@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title type="main" xml:lang="da">Romance</title>
+        <title type="main" xml:lang="en">Romance for Violin and Piano</title>
+        <respStmt>
+          <persName role="composer" auth="VIAF" auth.uri="http://viaf.org/viaf/97011363">Carl Nielsen</persName>
+        </respStmt>
+      </titleStmt>
+      <pubStmt>
+        <identifier type="CNW">60</identifier>
+      </pubStmt>
+    </fileDesc>
+    <workList>
+      <work>
+        <title type="main" xml:lang="en">Romance for Violin and Piano</title>
+        <composer auth="VIAF" auth.uri="http://viaf.org/viaf/97011363">Carl Nielsen</composer>
+        <creation><date notbefore="1882" notafter="1883">c. 1882–83</date></creation>
+        <classification><termList><term type="genre">Chamber music</term></termList></classification>
+        <perfMedium><perfResList>
+          <perfRes codedval="vln">violin</perfRes>
+          <perfRes codedval="pf">pianoforte (piano)</perfRes>
+        </perfResList></perfMedium>
+        <incip>
+          <tempo>Andante</tempo>
+          <meter count="4" unit="4"/>
+          <key pname="g" mode="major">G major</key>
+          <score>
+            <scoreDef meter.count="4" meter.unit="4" key.pname="g" key.mode="major"/>
+            <section><measure n="1"><staff n="1"><layer n="1">
+              <note pname="g" oct="4" dur="4"/>
+              <note pname="b" oct="4" dur="8"/>
+              <note pname="d" oct="5" dur="8"/>
+              <note pname="g" oct="5" dur="4"/>
+              <note pname="f" oct="5" dur="4" accid="s"/>
+            </layer></staff></measure></section>
+          </score>
+        </incip>
+      </work>
+    </workList>
+  </meiHead>
+  <music><body><mdiv><score></score></mdiv></body></music>
+</mei>

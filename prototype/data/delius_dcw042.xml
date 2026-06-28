@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title type="main" xml:lang="en">On Hearing the First Cuckoo in Spring</title>
+        <respStmt>
+          <persName role="composer" auth="VIAF" auth.uri="http://viaf.org/viaf/41841020">Frederick Delius</persName>
+        </respStmt>
+      </titleStmt>
+      <pubStmt>
+        <identifier type="DCW">42</identifier>
+      </pubStmt>
+    </fileDesc>
+    <workList>
+      <work>
+        <title type="main" xml:lang="en">On Hearing the First Cuckoo in Spring</title>
+        <composer auth="VIAF" auth.uri="http://viaf.org/viaf/41841020">Frederick Delius</composer>
+        <creation><date isodate="1912">1912</date></creation>
+        <classification><termList><term type="genre">Orchestral</term></termList></classification>
+        <perfMedium><perfResList>
+          <perfRes codedval="orch">small orchestra</perfRes>
+        </perfResList></perfMedium>
+        <incip>
+          <tempo>Molto moderato</tempo>
+          <meter count="4" unit="4"/>
+          <key pname="e" mode="major">E major</key>
+          <score>
+            <scoreDef meter.count="4" meter.unit="4" key.pname="e" key.mode="major"/>
+            <section><measure n="1"><staff n="1"><layer n="1">
+              <note pname="e" oct="5" dur="4"/>
+              <note pname="g" oct="5" dur="8" accid="s"/>
+              <note pname="b" oct="5" dur="8"/>
+              <note pname="a" oct="5" dur="4"/>
+              <note pname="g" oct="5" dur="4" accid="s"/>
+            </layer></staff></measure></section>
+          </score>
+        </incip>
+      </work>
+    </workList>
+  </meiHead>
+  <music><body><mdiv><score></score></mdiv></body></music>
+</mei>

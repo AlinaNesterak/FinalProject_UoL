@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title type="main" xml:lang="da">Hilsen</title>
+        <title type="subordinate" xml:lang="da">(Den dovne Fjord som gynger)</title>
+        <title type="main" xml:lang="en">Greeting</title>
+        <title type="subordinate" xml:lang="en">(You idle bay that stretches)</title>
+        <respStmt>
+          <persName role="composer" auth="VIAF" auth.uri="http://viaf.org/viaf/97011363">Carl Nielsen</persName>
+          <persName role="author">Ludvig Holstein</persName>
+        </respStmt>
+      </titleStmt>
+      <pubStmt>
+        <identifier type="CNW">131</identifier>
+        <identifier type="opus">10.6</identifier>
+      </pubStmt>
+    </fileDesc>
+    <workList>
+      <work>
+        <title type="main" xml:lang="da">Hilsen</title>
+        <title type="main" xml:lang="en">Greeting</title>
+        <composer auth="VIAF" auth.uri="http://viaf.org/viaf/97011363">Carl Nielsen</composer>
+        <creation>
+          <date notbefore="1895" notafter="1896">Between 1895 and 1896.</date>
+        </creation>
+        <classification>
+          <termList>
+            <term type="genre">Song</term>
+          </termList>
+        </classification>
+        <perfMedium>
+          <perfResList>
+            <perfRes>voice</perfRes>
+            <perfRes codedval="pf">pianoforte (piano)</perfRes>
+          </perfResList>
+        </perfMedium>
+        <incip>
+          <tempo>Quasi presto (ungdommelig bevæget)</tempo>
+          <meter count="6" unit="8"/>
+          <key pname="d" mode="major">D major</key>
+          <incipText xml:lang="da">Den dovne Fjord som gynger</incipText>
+          <incipText xml:lang="en">You idle bay that stretches</incipText>
+          <score>
+            <scoreDef meter.count="6" meter.unit="8" key.pname="d" key.mode="major"/>
+            <section>
+              <measure n="1">
+                <staff n="1"><layer n="1">
+                  <note pname="d" oct="5" dur="8"/>
+                  <note pname="d" oct="5" dur="8"/>
+                  <note pname="d" oct="5" dur="8"/>
+                  <note pname="f" oct="5" dur="8" accid="s"/>
+                  <note pname="a" oct="5" dur="8"/>
+                  <note pname="d" oct="6" dur="8"/>
+                </layer></staff>
+              </measure>
+            </section>
+          </score>
+        </incip>
+      </work>
+    </workList>
+  </meiHead>
+  <music><body><mdiv><score></score></mdiv></body></music>
+</mei>
