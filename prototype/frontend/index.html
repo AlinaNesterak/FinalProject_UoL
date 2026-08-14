@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music Works Catalogue Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a18; --ink-soft: #3a3a36; --paper: #faf8f4; --paper-2: #f3efe7;
+    --line: #e0d9cc; --accent: #a67c3d; --accent-deep: #8a6530; --muted: #8a857c;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  header { background: var(--ink); color: var(--paper); padding: 2.5rem 2rem 2.2rem; position: relative; overflow: hidden; border-bottom: 3px solid var(--accent); }
+  header::after { content: "\266A"; position: absolute; right: 2.5rem; top: 50%; transform: translateY(-50%); font-family: var(--serif); font-size: 7rem; color: var(--accent); opacity: 0.13; line-height: 1; animation: floatNote 6s ease-in-out infinite; }
+  @keyframes floatNote { 0%,100%{transform:translateY(-50%)} 50%{transform:translateY(-58%)} }
+  .header-inner { max-width: 1160px; margin: 0 auto; position: relative; z-index: 1; }
+  header .eyebrow { font-size: 0.72rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 0.6rem; opacity: 0; animation: fadeUp 0.7s ease 0.1s forwards; }
+  header h1 { font-family: var(--serif); font-size: 3.2rem; font-weight: 600; letter-spacing: 0.01em; line-height: 1.05; opacity: 0; animation: fadeUp 0.7s ease 0.25s forwards; }
+  header .tagline { font-family: var(--serif); font-style: italic; font-size: 1.25rem; color: var(--paper-2); opacity: 0; margin-top: 0.5rem; animation: fadeUp 0.7s ease 0.4s forwards; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+  .container { max-width: 1160px; margin: 0 auto; padding: 2.2rem 2rem 1rem; }
+  .controls { display: flex; gap: 0.85rem; flex-wrap: wrap; align-items: center; margin-bottom: 2rem; padding-bottom: 1.6rem; border-bottom: 1px solid var(--line); opacity: 0; animation: fadeUp 0.6s ease 0.55s forwards; }
+  .search-wrap { position: relative; flex: 1; min-width: 240px; }
+  .search-wrap::before { content: "\2315"; position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); font-size: 1.3rem; color: var(--muted); pointer-events: none; }
+  input[type="search"] { width: 100%; padding: 0.85rem 1rem 0.85rem 2.6rem; border: 1px solid var(--line); border-radius: 2px; font-size: 1rem; background: white; font-family: var(--sans); color: var(--ink); transition: border-color 0.25s, box-shadow 0.25s; }
+  input[type="search"]:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(166,124,61,0.12); }
+  select { padding: 0.85rem 1rem; border: 1px solid var(--line); border-radius: 2px; font-size: 0.95rem; background: white; font-family: var(--sans); color: var(--ink); cursor: pointer; transition: border-color 0.25s; }
+  select:focus { outline: none; border-color: var(--accent); }
+  button { padding: 0.85rem 1.6rem; border: 1px solid var(--ink); border-radius: 2px; cursor: pointer; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; background: var(--ink); color: var(--paper); font-family: var(--sans); transition: all 0.25s ease; }
+  button:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-1px); }
+  button:active { transform: translateY(0); }
+  button.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+  button.ghost:hover { background: transparent; color: var(--accent); border-color: var(--accent); transform: translateY(-1px); }
+  .layout { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+  @media (min-width: 860px) { .layout { grid-template-columns: 1fr 1.05fr; } }
+  .count { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+  .work-list { display: flex; flex-direction: column; }
+  .work-card { background: transparent; border: none; border-bottom: 1px solid var(--line); padding: 1.15rem 1rem 1.15rem 0.6rem; cursor: pointer; position: relative; transition: background 0.3s ease, padding-left 0.3s ease; animation: cardIn 0.5s ease backwards; }
+  @keyframes cardIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+  .work-card::before { content: ""; position: absolute; left: 0; top: 0; height: 100%; width: 0; background: var(--accent); transition: width 0.28s ease; }
+  .work-card:hover { background: var(--paper-2); padding-left: 1.3rem; }
+  .work-card:hover::before { width: 3px; }
+  .work-card.active { background: var(--paper-2); padding-left: 1.3rem; }
+  .work-card.active::before { width: 3px; }
+  .work-card .title { font-family: var(--serif); font-weight: 600; color: var(--ink); font-size: 1.42rem; line-height: 1.2; }
+  .work-card .meta { font-size: 0.82rem; color: var(--muted); margin-top: 0.35rem; display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+  .badge { display: inline-block; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.08em; padding: 0.2rem 0.55rem; border: 1px solid var(--accent); color: var(--accent-deep); border-radius: 2px; text-transform: uppercase; }
+  .meta .sep { color: var(--line); }
+  .detail { background: white; border: 1px solid var(--line); border-radius: 2px; padding: 2rem 2.1rem; position: sticky; top: 1.5rem; align-self: start; box-shadow: 0 1px 3px rgba(26,26,24,0.04); animation: detailIn 0.45s ease; }
+  @keyframes detailIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+  .detail .kicker { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 0.5rem; }
+  .detail h2 { font-family: var(--serif); color: var(--ink); font-size: 2.1rem; font-weight: 600; line-height: 1.12; margin-bottom: 0.3rem; }
+  .detail .subtitle { font-family: var(--serif); font-style: italic; color: var(--muted); font-size: 1.15rem; margin-bottom: 1.5rem; padding-bottom: 1.2rem; border-bottom: 1px solid var(--line); }
+  .field { margin-bottom: 0.7rem; font-size: 0.95rem; display: flex; gap: 1rem; }
+  .field .label { font-weight: 500; color: var(--ink-soft); flex: 0 0 130px; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; padding-top: 0.15rem; }
+  .field .value { flex: 1; color: var(--ink); }
+  .missing { color: var(--muted); font-style: italic; }
+  .pitches { font-family: var(--serif); font-size: 1.15rem; letter-spacing: 0.08em; color: var(--accent-deep); background: var(--paper); padding: 0.5rem 0.85rem; border-left: 2px solid var(--accent); display: inline-block; }
+  .similar-section { margin-top: 1.8rem; padding-top: 1.4rem; border-top: 1px solid var(--line); }
+  .similar-section h3 { font-family: var(--serif); font-size: 1.4rem; font-weight: 600; color: var(--ink); margin-bottom: 0.35rem; }
+  .disclaimer { font-size: 0.78rem; color: var(--muted); font-style: italic; margin-bottom: 0.9rem; }
+  .similar-item { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 0.2rem; border-bottom: 1px solid var(--line); cursor: pointer; transition: padding-left 0.25s ease; }
+  .similar-item:last-child { border-bottom: none; }
+  .similar-item:hover { padding-left: 0.6rem; }
+  .similar-item:hover .sim-title { color: var(--accent-deep); }
+  .sim-title { font-family: var(--serif); font-size: 1.15rem; transition: color 0.25s; }
+  .score { font-weight: 600; font-size: 0.9rem; color: var(--ink); display: flex; align-items: center; gap: 0.5rem; }
+  .score-bar { width: 46px; height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; }
+  .score-bar span { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
+  .empty { color: var(--muted); text-align: center; padding: 3rem 1rem; font-style: italic; font-family: var(--serif); font-size: 1.2rem; }
+  .placeholder { display: flex; align-items: center; justify-content: center; min-height: 300px; }
+  footer { text-align: center; padding: 2.5rem 2rem 2rem; color: var(--muted); font-size: 0.8rem; letter-spacing: 0.04em; border-top: 1px solid var(--line); margin-top: 2rem; }
+  footer a { color: var(--accent-deep); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.25s; }
+  footer a:hover { border-bottom-color: var(--accent-deep); }
+  footer .divider { margin: 0 0.6rem; color: var(--line); }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="eyebrow">A New Approach to Music Cataloguing</div>
+    <h1>Music Works Catalogue</h1>
+    <div class="tagline">Exploring the thematic catalogues of classical composers</div>
+  </div>
+</header>
+<div class="container">
+  <div class="controls">
+    <div class="search-wrap">
+      <input type="search" id="searchBox" placeholder="Search by title, composer, or genre&hellip;" aria-label="Search works">
+    </div>
+    <button onclick="doSearch()">Search</button>
+    <select id="catFilter" aria-label="Filter by catalogue" onchange="loadWorks()">
+      <option value="">All catalogues</option>
+    </select>
+    <button class="ghost" onclick="resetView()">Reset</button>
+  </div>
+  <div class="layout">
+    <div>
+      <div class="count" id="count"></div>
+      <div class="work-list" id="workList"></div>
+    </div>
+    <div id="detailPane">
+      <div class="detail placeholder"><div class="empty">Select a work to view its details</div></div>
+    </div>
+  </div>
+</div>
+<footer>
+  Music Works Catalogue Portal &middot; Prototype
+  <span class="divider">&middot;</span>
+  <a href="/docs" target="_blank">API documentation</a>
+  <span class="divider">&middot;</span>
+  <a href="https://github.com/AlinaNesterak/FinalProject_UoL" target="_blank">GitHub</a>
+</footer>
+<script>
+const API = "";
+async function fetchJSON(url){ const r = await fetch(API+url); if(!r.ok) throw new Error(r.status); return r.json(); }
+async function loadCatalogues(){
+  try { const cats = await fetchJSON("/catalogues"); const sel = document.getElementById("catFilter");
+    cats.forEach(c=>{ const o=document.createElement("option"); o.value=c.catalogue; o.textContent=c.catalogue+" \u2014 "+c.works+" works"; sel.appendChild(o); });
+  } catch(e){}
+}
+async function loadWorks(){
+  const cat = document.getElementById("catFilter").value;
+  const url = cat ? "/works?catalogue="+encodeURIComponent(cat) : "/works";
+  try { renderList(await fetchJSON(url)); }
+  catch(e){ document.getElementById("workList").innerHTML = '<div class="empty">Could not load works. Is the server running?</div>'; }
+}
+async function doSearch(){
+  const q = document.getElementById("searchBox").value.trim();
+  if(!q){ loadWorks(); return; }
+  try { renderList(await fetchJSON("/works/search?q="+encodeURIComponent(q)), "Results for \u201C"+q+"\u201D"); }
+  catch(e){ document.getElementById("workList").innerHTML = '<div class="empty">Search failed.</div>'; }
+}
+function resetView(){
+  document.getElementById("searchBox").value=""; document.getElementById("catFilter").value=""; loadWorks();
+  document.getElementById("detailPane").innerHTML = '<div class="detail placeholder"><div class="empty">Select a work to view its details</div></div>';
+}
+function renderList(works, heading){
+  const list = document.getElementById("workList");
+  document.getElementById("count").textContent = heading ? heading+" \u2014 "+works.length+" work(s)" : works.length+" work(s) in view";
+  if(!works.length){ list.innerHTML = '<div class="empty">No works found</div>'; return; }
+  list.innerHTML = "";
+  works.forEach((w,i)=>{
+    const card = document.createElement("div"); card.className = "work-card"; card.style.animationDelay = (i*0.04)+"s";
+    card.onclick = ()=>{ showDetail(w.work_id); highlight(card); };
+    card.innerHTML = '<div class="title">'+esc(w.title_main||"(untitled)")+'</div>'+
+      '<div class="meta"><span class="badge">'+esc(w.work_id)+'</span><span>'+esc(w.composer||"")+'</span><span class="sep">\u00B7</span><span>'+esc(w.genre||"\u2014")+'</span></div>';
+    list.appendChild(card);
+  });
+}
+function highlight(card){ document.querySelectorAll(".work-card").forEach(c=>c.classList.remove("active")); card.classList.add("active"); }
+async function showDetail(id){
+  const pane = document.getElementById("detailPane");
+  pane.innerHTML = '<div class="detail placeholder"><div class="empty">Loading\u2026</div></div>';
+  try { const w = await fetchJSON("/works/"+encodeURIComponent(id));
+    let sim = []; try { sim = await fetchJSON("/works/"+encodeURIComponent(id)+"/similar"); } catch{}
+    pane.innerHTML = renderDetail(w, sim);
+  } catch(e){ pane.innerHTML = '<div class="detail placeholder"><div class="empty">Could not load details</div></div>'; }
+}
+function fld(label,value){
+  const v = (value && (!Array.isArray(value)||value.length)) ? (Array.isArray(value)?value.join(", "):value) : null;
+  const inner = v ? '<span class="value">'+esc(v)+'</span>' : '<span class="value missing">not recorded</span>';
+  return '<div class="field"><span class="label">'+label+'</span>'+inner+'</div>';
+}
+function renderDetail(w, sim){
+  const pitches = (w.incipit_pitches&&w.incipit_pitches.length)
+    ? '<div class="pitches">'+w.incipit_pitches.join("  \u00B7  ")+'</div>'
+    : '<span class="value missing">no incipit recorded</span>';
+  let simHtml = "";
+  if(sim&&sim.length){
+    simHtml = '<div class="similar-section"><h3>Melodically Similar Works</h3>'+
+      '<div class="disclaimer">Computational suggestions based on incipit similarity &mdash; not scholarly claims.</div>'+
+      sim.map(function(s){ return '<div class="similar-item" onclick="showDetail(\''+esc(s.work_id)+'\')">'+
+        '<span class="sim-title">'+esc(s.title||s.work_id)+' <span class="badge">'+esc(s.work_id)+'</span></span>'+
+        '<span class="score"><span class="score-bar"><span style="width:'+Math.round(s.score*100)+'%"></span></span>'+s.score.toFixed(2)+'</span></div>'; }).join("")+'</div>';
+  }
+  return '<div class="detail">'+
+    '<div class="kicker">'+esc(w.catalogue)+' \u00B7 '+esc(w.work_id)+'</div>'+
+    '<h2>'+esc(w.title_main||"(untitled)")+'</h2>'+
+    '<div class="subtitle">'+esc(w.composer||"")+'</div>'+
+    fld("Opus", w.opus)+fld("Genre", w.genre)+fld("Date", w.date_text)+
+    fld("Danish title", w.title_da)+fld("English title", w.title_en)+
+    fld("Instrumentation", w.instrumentation)+fld("Tempo", w.incipit_tempo)+
+    fld("Key", w.incipit_key)+fld("Meter", w.incipit_meter)+
+    '<div class="field"><span class="label">Incipit</span><span class="value">'+pitches+'</span></div>'+
+    simHtml+'</div>';
+}
+function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+loadCatalogues(); loadWorks();
+document.getElementById("searchBox").addEventListener("keydown",function(e){ if(e.key==="Enter") doSearch(); });
+</script>
+</body>
+</html>

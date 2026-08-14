@@ -19,6 +19,8 @@ from pathlib import Path
 from typing import Optional
 
 from fastapi import FastAPI, HTTPException, Query
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 # Allow importing the discovery black box from the transform package
@@ -93,8 +95,19 @@ def _row_to_detail(row: sqlite3.Row) -> WorkDetail:
     )
 
 
+FRONTEND = Path(__file__).resolve().parent.parent / "frontend" / "index.html"
+
+
 @app.get("/")
 def root():
+    """Serve the web interface if present, else basic API info."""
+    if FRONTEND.exists():
+        return FileResponse(str(FRONTEND))
+    return {"name": "Music Works Catalogue Portal API", "version": "0.1.0", "docs": "/docs"}
+
+
+@app.get("/api")
+def api_info():
     return {"name": "Music Works Catalogue Portal API", "version": "0.1.0", "docs": "/docs"}
 
 
