@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title type="main" xml:lang="da">Jens Vejmand</title>
+        <title type="main" xml:lang="en">Jens the Road-mender</title>
+        <respStmt>
+          <persName role="composer" auth="VIAF" auth.uri="http://viaf.org/viaf/97011363">Carl Nielsen</persName>
+          <persName role="author">Jeppe Aakjær</persName>
+        </respStmt>
+      </titleStmt>
+      <pubStmt>
+        <identifier type="CNW">145</identifier>
+
+      </pubStmt>
+      <sourceDesc>
+        <source type="manuscript">
+          <titleStmt><title>Autograph</title></titleStmt>
+          <physLoc><repository><corpName>Royal Danish Library, Copenhagen</corpName></repository>
+          <identifier type="shelfmark">CNS 355</identifier></physLoc>
+        </source>
+        <source type="print">
+          <titleStmt><title>First edition</title></titleStmt>
+          <physLoc><repository><corpName>Nordisk Musikforlag 1907</corpName></repository>
+          <identifier type="shelfmark">NMF 442</identifier></physLoc>
+        </source>
+      </sourceDesc>
+    </fileDesc>
+    <workList>
+      <work>
+        <title type="main" xml:lang="da">Jens Vejmand</title>
+        <title type="main" xml:lang="en">Jens the Road-mender</title>
+        <composer auth="VIAF" auth.uri="http://viaf.org/viaf/97011363">Carl Nielsen</composer>
+        <creation><date isodate="1907">1907</date></creation>
+        <classification><termList><term type="genre">Song</term></termList></classification>
+        <perfMedium><perfResList>
+          <perfRes>voice</perfRes>
+          <perfRes codedval="pf">pianoforte (piano)</perfRes>
+        </perfResList></perfMedium>
+        <incip>
+          <tempo>Andante</tempo>
+          <meter count="3" unit="4"/>
+          <key pname="a" mode="minor">A minor</key>
+          <score>
+            <scoreDef meter.count="3" meter.unit="4" key.pname="a" key.mode="minor"/>
+            <section><measure n="1"><staff n="1"><layer n="1">
+              <note pname="a" oct="4" dur="4"/>
+              <note pname="c" oct="5" dur="4"/>
+              <note pname="e" oct="5" dur="4"/>
+              <note pname="e" oct="5" dur="8"/>
+              <note pname="d" oct="5" dur="8"/>
+            </layer></staff></measure></section>
+          </score>
+        </incip>
+        <history>
+          <eventList type="performances">
+            <event><date isodate="1907-11-02">1907-11-02</date><desc>First public performance, Copenhagen.</desc></event>
+          </eventList>
+        </history>
+      </work>
+    </workList>
+  </meiHead>
+  <music><body><mdiv><score></score></mdiv></body></music>
+</mei>

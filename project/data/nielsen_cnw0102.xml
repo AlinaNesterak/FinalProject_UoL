@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title type="main" xml:lang="da">Symfoni nr. 4 "Det Uudslukkelige"</title>
+        <title type="main" xml:lang="en">Symphony No. 4 "The Inextinguishable"</title>
+        <respStmt>
+          <persName role="composer" auth="VIAF" auth.uri="http://viaf.org/viaf/97011363">Carl Nielsen</persName>
+        </respStmt>
+      </titleStmt>
+      <pubStmt>
+        <identifier type="CNW">102</identifier>
+        <identifier type="opus">29</identifier>
+      </pubStmt>
+      <sourceDesc>
+      <source type="manuscript">
+        <titleStmt><title>Autograph score</title></titleStmt>
+        <physLoc>
+          <repository><corpName>Royal Danish Library, Copenhagen</corpName></repository>
+          <identifier type="shelfmark">CNS 64</identifier>
+        </physLoc>
+      </source>
+      <source type="print">
+        <titleStmt><title>First edition score</title></titleStmt>
+        <physLoc>
+          <repository><corpName>Wilhelm Hansen, Copenhagen 1916</corpName></repository>
+          <identifier type="shelfmark">WH 15580</identifier>
+        </physLoc>
+      </source>
+      <source type="manuscript">
+        <titleStmt><title>Orchestral parts</title></titleStmt>
+        <physLoc>
+          <repository><corpName>Royal Danish Library, Copenhagen</corpName></repository>
+          <identifier type="shelfmark">CNS 64a</identifier>
+        </physLoc>
+      </source>
+      </sourceDesc>
+    </fileDesc>
+    <workList>
+      <work>
+        <title type="main" xml:lang="en">Symphony No. 4 "The Inextinguishable"</title>
+        <composer auth="VIAF" auth.uri="http://viaf.org/viaf/97011363">Carl Nielsen</composer>
+        <creation><date notbefore="1914" notafter="1916">1914–1916</date></creation>
+        <classification><termList><term type="genre">Symphony</term></termList></classification>
+        <perfMedium><perfResList>
+          <perfRes codedval="orch">orchestra</perfRes>
+        </perfResList></perfMedium>
+        <incip>
+          <tempo>Allegro</tempo>
+          <meter count="4" unit="4"/>
+          <key pname="d" mode="minor">D minor</key>
+          <score>
+            <scoreDef meter.count="4" meter.unit="4" key.pname="d" key.mode="minor"/>
+            <section><measure n="1"><staff n="1"><layer n="1">
+              <note pname="d" oct="5" dur="4"/>
+              <note pname="a" oct="4" dur="8"/>
+              <note pname="d" oct="5" dur="8"/>
+              <note pname="e" oct="5" dur="4"/>
+              <note pname="f" oct="5" dur="4"/>
+            </layer></staff></measure></section>
+          </score>
+        </incip>
+        <history>
+          <eventList type="performances">
+        <event>
+          <date isodate="1916-02-01">1916-02-01</date>
+          <desc>World premiere, Copenhagen. Music Society, conducted by the composer.</desc>
+        </event>
+        <event>
+          <date isodate="1920-10-14">1920-10-14</date>
+          <desc>First performance in London, Queen's Hall.</desc>
+        </event>
+          </eventList>
+        </history>
+      </work>
+    </workList>
+  </meiHead>
+  <music><body><mdiv><score></score></mdiv></body></music>
+</mei>

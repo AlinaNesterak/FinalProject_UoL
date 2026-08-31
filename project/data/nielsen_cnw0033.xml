@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title type="main" xml:lang="da">Symfoni nr. 1</title>
+        <title type="main" xml:lang="en">Symphony No. 1</title>
+        <respStmt>
+          <persName role="composer" auth="VIAF" auth.uri="http://viaf.org/viaf/97011363">Carl Nielsen</persName>
+
+        </respStmt>
+      </titleStmt>
+      <pubStmt>
+        <identifier type="CNW">33</identifier>
+        <identifier type="opus">7</identifier>
+      </pubStmt>
+      <sourceDesc>
+        <source type="manuscript">
+          <titleStmt><title>Autograph score</title></titleStmt>
+          <physLoc><repository><corpName>Royal Danish Library, Copenhagen</corpName></repository>
+          <identifier type="shelfmark">CNS 41</identifier></physLoc>
+        </source>
+        <source type="print">
+          <titleStmt><title>First edition</title></titleStmt>
+          <physLoc><repository><corpName>Wilhelm Hansen, Copenhagen 1894</corpName></repository>
+          <identifier type="shelfmark">WH 10390</identifier></physLoc>
+        </source>
+      </sourceDesc>
+    </fileDesc>
+    <workList>
+      <work>
+        <title type="main" xml:lang="da">Symfoni nr. 1</title>
+        <title type="main" xml:lang="en">Symphony No. 1</title>
+        <composer auth="VIAF" auth.uri="http://viaf.org/viaf/97011363">Carl Nielsen</composer>
+        <creation><date notbefore="1890" notafter="1892">1890–1892</date></creation>
+        <classification><termList><term type="genre">Symphony</term></termList></classification>
+        <perfMedium><perfResList>
+          <perfRes codedval="orch">orchestra</perfRes>
+        </perfResList></perfMedium>
+        <incip>
+          <tempo>Allegro orgoglioso</tempo>
+          <meter count="4" unit="4"/>
+          <key pname="g" mode="minor">G minor</key>
+          <score>
+            <scoreDef meter.count="4" meter.unit="4" key.pname="g" key.mode="minor"/>
+            <section><measure n="1"><staff n="1"><layer n="1">
+              <note pname="g" oct="4" dur="4"/>
+              <note pname="b" oct="4" dur="8" accid="f"/>
+              <note pname="d" oct="5" dur="8"/>
+              <note pname="g" oct="5" dur="4"/>
+              <note pname="f" oct="5" dur="4"/>
+            </layer></staff></measure></section>
+          </score>
+        </incip>
+        <history>
+          <eventList type="performances">
+            <event><date isodate="1894-03-14">1894-03-14</date><desc>World premiere, Copenhagen, conducted by Johan Svendsen.</desc></event>
+          </eventList>
+        </history>
+      </work>
+    </workList>
+  </meiHead>
+  <music><body><mdiv><score></score></mdiv></body></music>
+</mei>

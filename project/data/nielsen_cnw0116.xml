@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title type="main" xml:lang="da">Maskarade: Ouverture</title>
+        <title type="main" xml:lang="en">Masquerade: Overture</title>
+        <respStmt>
+          <persName role="composer" auth="VIAF" auth.uri="http://viaf.org/viaf/97011363">Carl Nielsen</persName>
+
+        </respStmt>
+      </titleStmt>
+      <pubStmt>
+        <identifier type="CNW">116</identifier>
+
+      </pubStmt>
+      <sourceDesc>
+        <source type="manuscript">
+          <titleStmt><title>Autograph score</title></titleStmt>
+          <physLoc><repository><corpName>Royal Danish Library, Copenhagen</corpName></repository>
+          <identifier type="shelfmark">CNS 20</identifier></physLoc>
+        </source>
+        <source type="print">
+          <titleStmt><title>First edition</title></titleStmt>
+          <physLoc><repository><corpName>Wilhelm Hansen 1906</corpName></repository>
+          <identifier type="shelfmark">WH 13843</identifier></physLoc>
+        </source>
+      </sourceDesc>
+    </fileDesc>
+    <workList>
+      <work>
+        <title type="main" xml:lang="da">Maskarade: Ouverture</title>
+        <title type="main" xml:lang="en">Masquerade: Overture</title>
+        <composer auth="VIAF" auth.uri="http://viaf.org/viaf/97011363">Carl Nielsen</composer>
+        <creation><date notbefore="1904" notafter="1906">1904–1906</date></creation>
+        <classification><termList><term type="genre">Opera</term></termList></classification>
+        <perfMedium><perfResList>
+          <perfRes codedval="orch">orchestra</perfRes>
+        </perfResList></perfMedium>
+        <incip>
+          <tempo>Allegro vivace</tempo>
+          <meter count="2" unit="2"/>
+          <key pname="c" mode="major">C major</key>
+          <score>
+            <scoreDef meter.count="2" meter.unit="2" key.pname="c" key.mode="major"/>
+            <section><measure n="1"><staff n="1"><layer n="1">
+              <note pname="c" oct="5" dur="8"/>
+              <note pname="d" oct="5" dur="8"/>
+              <note pname="e" oct="5" dur="8"/>
+              <note pname="f" oct="5" dur="8"/>
+              <note pname="g" oct="5" dur="4"/>
+              <note pname="e" oct="5" dur="4"/>
+            </layer></staff></measure></section>
+          </score>
+        </incip>
+        <history>
+          <eventList type="performances">
+            <event><date isodate="1906-11-11">1906-11-11</date><desc>Premiere of the opera, Royal Theatre, Copenhagen.</desc></event>
+          </eventList>
+        </history>
+      </work>
+    </workList>
+  </meiHead>
+  <music><body><mdiv><score></score></mdiv></body></music>
+</mei>

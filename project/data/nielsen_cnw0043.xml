@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title type="main" xml:lang="da">Blæserkvintet</title>
+        <title type="main" xml:lang="en">Wind Quintet</title>
+        <respStmt>
+          <persName role="composer" auth="VIAF" auth.uri="http://viaf.org/viaf/97011363">Carl Nielsen</persName>
+
+        </respStmt>
+      </titleStmt>
+      <pubStmt>
+        <identifier type="CNW">43</identifier>
+        <identifier type="opus">43</identifier>
+      </pubStmt>
+      <sourceDesc>
+        <source type="manuscript">
+          <titleStmt><title>Autograph score</title></titleStmt>
+          <physLoc><repository><corpName>Royal Danish Library, Copenhagen</corpName></repository>
+          <identifier type="shelfmark">CNS 78</identifier></physLoc>
+        </source>
+      </sourceDesc>
+    </fileDesc>
+    <workList>
+      <work>
+        <title type="main" xml:lang="da">Blæserkvintet</title>
+        <title type="main" xml:lang="en">Wind Quintet</title>
+        <composer auth="VIAF" auth.uri="http://viaf.org/viaf/97011363">Carl Nielsen</composer>
+        <creation><date isodate="1922">1922</date></creation>
+        <classification><termList><term type="genre">Chamber music</term></termList></classification>
+        <perfMedium><perfResList>
+          <perfRes codedval="fl">flute</perfRes>
+          <perfRes codedval="ob">oboe</perfRes>
+          <perfRes codedval="cl">clarinet</perfRes>
+          <perfRes codedval="hn">horn</perfRes>
+          <perfRes codedval="bsn">bassoon</perfRes>
+        </perfResList></perfMedium>
+        <incip>
+          <tempo>Allegro ben moderato</tempo>
+          <meter count="4" unit="4"/>
+          <key pname="e" mode="major">E major</key>
+          <score>
+            <scoreDef meter.count="4" meter.unit="4" key.pname="e" key.mode="major"/>
+            <section><measure n="1"><staff n="1"><layer n="1">
+              <note pname="e" oct="4" dur="4"/>
+              <note pname="g" oct="4" dur="8" accid="s"/>
+              <note pname="b" oct="4" dur="8"/>
+              <note pname="e" oct="5" dur="4"/>
+              <note pname="d" oct="5" dur="8" accid="s"/>
+              <note pname="b" oct="4" dur="8"/>
+            </layer></staff></measure></section>
+          </score>
+        </incip>
+        <history>
+          <eventList type="performances">
+            <event><date isodate="1922-10-09">1922-10-09</date><desc>World premiere, Copenhagen, by members of the Copenhagen Wind Quintet.</desc></event>
+          </eventList>
+        </history>
+      </work>
+    </workList>
+  </meiHead>
+  <music><body><mdiv><score></score></mdiv></body></music>
+</mei>

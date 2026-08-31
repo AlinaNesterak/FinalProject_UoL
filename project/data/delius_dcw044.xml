@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title type="main" xml:lang="en">Summer Night on the River</title>
+        <respStmt>
+          <persName role="composer" auth="VIAF" auth.uri="http://viaf.org/viaf/41841020">Frederick Delius</persName>
+
+        </respStmt>
+      </titleStmt>
+      <pubStmt>
+        <identifier type="DCW">44</identifier>
+
+      </pubStmt>
+      <sourceDesc>
+        <source type="manuscript">
+          <titleStmt><title>Autograph full score</title></titleStmt>
+          <physLoc><repository><corpName>British Library, London</corpName></repository>
+          <identifier type="shelfmark">Add MS 33756</identifier></physLoc>
+        </source>
+      </sourceDesc>
+    </fileDesc>
+    <workList>
+      <work>
+        <title type="main" xml:lang="en">Summer Night on the River</title>
+        <composer auth="VIAF" auth.uri="http://viaf.org/viaf/41841020">Frederick Delius</composer>
+        <creation><date isodate="1911">1911</date></creation>
+        <classification><termList><term type="genre">Orchestral</term></termList></classification>
+        <perfMedium><perfResList>
+          <perfRes codedval="orch">small orchestra</perfRes>
+        </perfResList></perfMedium>
+        <incip>
+          <tempo>Very quietly</tempo>
+          <meter count="4" unit="4"/>
+          <key pname="e" mode="minor">E minor</key>
+          <score>
+            <scoreDef meter.count="4" meter.unit="4" key.pname="e" key.mode="minor"/>
+            <section><measure n="1"><staff n="1"><layer n="1">
+              <note pname="e" oct="5" dur="8"/>
+              <note pname="f" oct="5" dur="8" accid="s"/>
+              <note pname="g" oct="5" dur="4"/>
+              <note pname="f" oct="5" dur="8" accid="s"/>
+              <note pname="e" oct="5" dur="8"/>
+              <note pname="b" oct="4" dur="4"/>
+            </layer></staff></measure></section>
+          </score>
+        </incip>
+        <history>
+          <eventList type="performances">
+            <event><date isodate="1913-10-23">1913-10-23</date><desc>World premiere, Leipzig, conducted by Arthur Nikisch.</desc></event>
+          </eventList>
+        </history>
+      </work>
+    </workList>
+  </meiHead>
+  <music><body><mdiv><score></score></mdiv></body></music>
+</mei>
