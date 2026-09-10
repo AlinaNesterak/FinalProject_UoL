@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title type="main" xml:lang="en">Brigg Fair: An English Rhapsody</title>
+        <respStmt>
+          <persName role="composer" auth="VIAF" auth.uri="http://viaf.org/viaf/51874944">Frederick Delius</persName>
+          <persName role="composer" auth="Wikidata" auth.uri="https://www.wikidata.org/wiki/Q312698">Frederick Delius</persName>
+          <persName role="composer" auth="MusicBrainz" auth.uri="https://musicbrainz.org/artist/2a006dfe-a7af-46d1-b38f-8c1d90dd230d">Frederick Delius</persName>
+
+        </respStmt>
+      </titleStmt>
+      <pubStmt>
+        <identifier type="DCW">6</identifier>
+
+        <identifier type="IMSLP">https://imslp.org/wiki/Brigg_Fair_(Delius,_Frederick)</identifier>
+      </pubStmt>
+      <sourceDesc>
+        <source type="manuscript">
+          <titleStmt><title>Autograph full score</title></titleStmt>
+          <physLoc><repository><corpName>British Library, London</corpName></repository>
+          <identifier type="shelfmark">Add MS 33745</identifier></physLoc>
+        </source>
+        <source type="print">
+          <titleStmt><title>First edition</title></titleStmt>
+          <physLoc><repository><corpName>Leuckart, Leipzig 1910</corpName></repository>
+          <identifier type="shelfmark">FEC L 6205</identifier></physLoc>
+        </source>
+      </sourceDesc>
+    </fileDesc>
+    <workList>
+      <work>
+        <title type="main" xml:lang="en">Brigg Fair: An English Rhapsody</title>
+        <composer auth="VIAF" auth.uri="http://viaf.org/viaf/51874944">Frederick Delius</composer>
+        <creation><date isodate="1907">1907</date></creation>
+        <classification><termList><term type="genre">Orchestral</term></termList></classification>
+        <perfMedium><perfResList>
+          <perfRes codedval="orch">orchestra</perfRes>
+        </perfResList></perfMedium>
+        <incip>
+          <tempo>Slow and quietly</tempo>
+          <meter count="6" unit="8"/>
+          <key pname="g" mode="major">G major</key>
+          <score>
+            <scoreDef meter.count="6" meter.unit="8" key.pname="g" key.mode="major"/>
+            <section><measure n="1"><staff n="1"><layer n="1">
+              <note pname="d" oct="5" dur="8"/>
+              <note pname="g" oct="5" dur="8"/>
+              <note pname="a" oct="5" dur="8"/>
+              <note pname="b" oct="5" dur="4"/>
+              <note pname="a" oct="5" dur="8"/>
+              <note pname="g" oct="5" dur="8"/>
+            </layer></staff></measure></section>
+          </score>
+        </incip>
+        <history>
+          <p>Brigg Fair takes its theme from an English folk song collected by Percy Grainger in Lincolnshire, which Grainger passed to Delius with enthusiasm. Delius transformed the simple tune into an extended orchestral rhapsody of shifting harmonic colour, and the work is widely regarded as the piece that established his mature orchestral voice to English audiences.</p>
+          <eventList type="performances">
+            <event><date isodate="1908-01-18">1908-01-18</date><desc>World premiere, Liverpool, conducted by Granville Bantock.</desc></event>
+            <event><date isodate="1908-03-31">1908-03-31</date><desc>London premiere, conducted by Thomas Beecham.</desc></event>
+          </eventList>
+        </history>
+      </work>
+    </workList>
+  </meiHead>
+  <music><body><mdiv><score></score></mdiv></body></music>
+</mei>

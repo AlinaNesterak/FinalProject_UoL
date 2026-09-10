@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title type="main" xml:lang="da">Lille Suite for Strygeorkester</title>
+        <title type="main" xml:lang="en">Little Suite for Strings</title>
+        <respStmt>
+          <persName role="composer" auth="VIAF" auth.uri="http://viaf.org/viaf/197250">Carl Nielsen</persName>
+          <persName role="composer" auth="Wikidata" auth.uri="https://www.wikidata.org/wiki/Q205139">Carl Nielsen</persName>
+          <persName role="composer" auth="MusicBrainz" auth.uri="https://musicbrainz.org/artist/1be1367d-119f-4b08-bdfe-50b95043e544">Carl Nielsen</persName>
+        </respStmt>
+      </titleStmt>
+      <pubStmt>
+        <identifier type="CNW">1</identifier>
+        <identifier type="opus">1</identifier>
+      </pubStmt>
+      <sourceDesc>
+        <source type="manuscript">
+          <titleStmt><title>Autograph score</title></titleStmt>
+          <physLoc><repository><corpName>Royal Danish Library, Copenhagen</corpName></repository>
+          <identifier type="shelfmark">CNS 1</identifier></physLoc>
+        </source>
+        <source type="print">
+          <titleStmt><title>First edition</title></titleStmt>
+          <physLoc><repository><corpName>Wilhelm Hansen, Copenhagen 1889</corpName></repository>
+          <identifier type="shelfmark">WH 8221</identifier></physLoc>
+        </source>
+      </sourceDesc>
+    </fileDesc>
+    <workList>
+      <work>
+        <title type="main" xml:lang="da">Lille Suite for Strygeorkester</title>
+        <title type="main" xml:lang="en">Little Suite for Strings</title>
+        <composer auth="VIAF" auth.uri="http://viaf.org/viaf/197250">Carl Nielsen</composer>
+        <creation><date isodate="1888">1888</date></creation>
+        <classification><termList><term type="genre">Orchestral</term></termList></classification>
+        <perfMedium><perfResList>
+          <perfRes codedval="str">string orchestra</perfRes>
+        </perfResList></perfMedium>
+        <incip>
+          <tempo>Praeludium: Andante</tempo>
+          <meter count="3" unit="4"/>
+          <key pname="a" mode="minor">A minor</key>
+          <score>
+            <scoreDef meter.count="3" meter.unit="4" key.pname="a" key.mode="minor"/>
+            <section><measure n="1"><staff n="1"><layer n="1">
+              <note pname="a" oct="4" dur="4"/>
+              <note pname="c" oct="5" dur="8"/>
+              <note pname="e" oct="5" dur="8"/>
+              <note pname="a" oct="5" dur="4"/>
+              <note pname="g" oct="5" dur="4"/>
+            </layer></staff></measure></section>
+          </score>
+        </incip>
+        <history>
+          <p>Nielsen's first published work, the Little Suite was composed while he was still a violin student at the Royal Danish Academy of Music. Its confident craftsmanship and warm string writing brought him immediate critical attention and remain a staple of the string-orchestra repertoire in Denmark.</p>
+          <eventList type="performances">
+            <event><date isodate="1888-09-08">1888-09-08</date><desc>World premiere, Tivoli Concert Hall, Copenhagen, conducted by the composer.</desc></event>
+          </eventList>
+        </history>
+      </work>
+    </workList>
+  </meiHead>
+  <music><body><mdiv><score></score></mdiv></body></music>
+</mei>

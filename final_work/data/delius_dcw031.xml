@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title type="main" xml:lang="en">In a Summer Garden</title>
+        <respStmt>
+          <persName role="composer" auth="VIAF" auth.uri="http://viaf.org/viaf/51874944">Frederick Delius</persName>
+          <persName role="composer" auth="Wikidata" auth.uri="https://www.wikidata.org/wiki/Q312698">Frederick Delius</persName>
+          <persName role="composer" auth="MusicBrainz" auth.uri="https://musicbrainz.org/artist/2a006dfe-a7af-46d1-b38f-8c1d90dd230d">Frederick Delius</persName>
+        </respStmt>
+      </titleStmt>
+      <pubStmt>
+        <identifier type="DCW">31</identifier>
+
+      </pubStmt>
+      <sourceDesc>
+        <source type="manuscript">
+          <titleStmt><title>Autograph full score</title></titleStmt>
+          <physLoc><repository><corpName>British Library, London</corpName></repository>
+          <identifier type="shelfmark">Add MS 33758</identifier></physLoc>
+        </source>
+      </sourceDesc>
+    </fileDesc>
+    <workList>
+      <work>
+        <title type="main" xml:lang="en">In a Summer Garden</title>
+        <composer auth="VIAF" auth.uri="http://viaf.org/viaf/51874944">Frederick Delius</composer>
+        <creation><date isodate="1908">1908</date></creation>
+        <classification><termList><term type="genre">Orchestral</term></termList></classification>
+        <perfMedium><perfResList>
+          <perfRes codedval="orch">orchestra</perfRes>
+        </perfResList></perfMedium>
+        <incip>
+          <tempo>Lento, molto tranquillo</tempo>
+          <meter count="6" unit="8"/>
+          <key pname="a" mode="major">A major</key>
+          <score>
+            <scoreDef meter.count="6" meter.unit="8" key.pname="a" key.mode="major"/>
+            <section><measure n="1"><staff n="1"><layer n="1">
+              <note pname="a" oct="5" dur="8"/>
+              <note pname="b" oct="5" dur="8"/>
+              <note pname="c" oct="6" dur="4" accid="s"/>
+              <note pname="b" oct="5" dur="8"/>
+              <note pname="a" oct="5" dur="8"/>
+            </layer></staff></measure></section>
+          </score>
+        </incip>
+        <history>
+          <p>Inspired by the garden of Delius's own house at Grez-sur-Loing in France, this orchestral rhapsody is among the most personal of his tone poems, evoking the sounds and colours of a specific, real place rather than a literary or folk source. Delius revised the work in 1911 with the addition of quiet vocal parts, later removed in performance practice.</p>
+          <eventList type="performances">
+            <event><date isodate="1908-12-11">1908-12-11</date><desc>World premiere, London, Queen's Hall, conducted by the composer.</desc></event>
+          </eventList>
+        </history>
+      </work>
+    </workList>
+  </meiHead>
+  <music><body><mdiv><score></score></mdiv></body></music>
+</mei>

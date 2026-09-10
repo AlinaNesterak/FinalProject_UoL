@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title type="main" xml:lang="da">Violinkoncert</title>
+        <title type="main" xml:lang="en">Violin Concerto</title>
+        <respStmt>
+          <persName role="composer" auth="VIAF" auth.uri="http://viaf.org/viaf/197250">Carl Nielsen</persName>
+          <persName role="composer" auth="Wikidata" auth.uri="https://www.wikidata.org/wiki/Q205139">Carl Nielsen</persName>
+          <persName role="composer" auth="MusicBrainz" auth.uri="https://musicbrainz.org/artist/1be1367d-119f-4b08-bdfe-50b95043e544">Carl Nielsen</persName>
+        </respStmt>
+      </titleStmt>
+      <pubStmt>
+        <identifier type="CNW">90</identifier>
+        <identifier type="opus">33</identifier>
+        <identifier type="IMSLP">https://imslp.org/wiki/Violin_Concerto,_Op.33_(Nielsen,_Carl)</identifier>
+      </pubStmt>
+      <sourceDesc>
+        <source type="manuscript">
+          <titleStmt><title>Autograph score</title></titleStmt>
+          <physLoc><repository><corpName>Royal Danish Library, Copenhagen</corpName></repository>
+          <identifier type="shelfmark">CNS 90</identifier></physLoc>
+        </source>
+        <source type="print">
+          <titleStmt><title>First edition</title></titleStmt>
+          <physLoc><repository><corpName>Wilhelm Hansen 1919</corpName></repository>
+          <identifier type="shelfmark">WH 15108</identifier></physLoc>
+        </source>
+      </sourceDesc>
+    </fileDesc>
+    <workList>
+      <work>
+        <title type="main" xml:lang="da">Violinkoncert</title>
+        <title type="main" xml:lang="en">Violin Concerto</title>
+        <composer auth="VIAF" auth.uri="http://viaf.org/viaf/197250">Carl Nielsen</composer>
+        <creation><date isodate="1911">1911</date></creation>
+        <classification><termList><term type="genre">Concerto</term></termList></classification>
+        <perfMedium><perfResList>
+          <perfRes codedval="vn">solo violin</perfRes>
+          <perfRes codedval="orch">orchestra</perfRes>
+        </perfResList></perfMedium>
+        <incip>
+          <tempo>Praeludium: Largo</tempo>
+          <meter count="4" unit="4"/>
+          <key pname="g" mode="major">G major</key>
+          <score>
+            <scoreDef meter.count="4" meter.unit="4" key.pname="g" key.mode="major"/>
+            <section><measure n="1"><staff n="1"><layer n="1">
+              <note pname="g" oct="4" dur="4"/>
+              <note pname="b" oct="4" dur="8"/>
+              <note pname="d" oct="5" dur="8"/>
+              <note pname="g" oct="5" dur="4"/>
+              <note pname="f" oct="5" dur="4" accid="s"/>
+            </layer></staff></measure></section>
+          </score>
+        </incip>
+        <history>
+          <p>Nielsen's only violin concerto combines a Baroque-influenced two-movement design (each divided into a slow introduction and fast main section) with a soloistic style rooted in his own early career as an orchestral violinist. It remains a cornerstone of the Danish violin repertoire, if still underplayed internationally.</p>
+          <eventList type="performances">
+            <event><date isodate="1912-02-28">1912-02-28</date><desc>World premiere, Copenhagen, with soloist Peder Møller.</desc></event>
+          </eventList>
+        </history>
+      </work>
+    </workList>
+  </meiHead>
+  <music><body><mdiv><score></score></mdiv></body></music>
+</mei>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title type="main" xml:lang="en">Summer Night on the River</title>
+        <respStmt>
+          <persName role="composer" auth="VIAF" auth.uri="http://viaf.org/viaf/51874944">Frederick Delius</persName>
+          <persName role="composer" auth="Wikidata" auth.uri="https://www.wikidata.org/wiki/Q312698">Frederick Delius</persName>
+          <persName role="composer" auth="MusicBrainz" auth.uri="https://musicbrainz.org/artist/2a006dfe-a7af-46d1-b38f-8c1d90dd230d">Frederick Delius</persName>
+
+        </respStmt>
+      </titleStmt>
+      <pubStmt>
+        <identifier type="DCW">44</identifier>
+
+      </pubStmt>
+      <sourceDesc>
+        <source type="manuscript">
+          <titleStmt><title>Autograph full score</title></titleStmt>
+          <physLoc><repository><corpName>British Library, London</corpName></repository>
+          <identifier type="shelfmark">Add MS 33756</identifier></physLoc>
+        </source>
+      </sourceDesc>
+    </fileDesc>
+    <workList>
+      <work>
+        <title type="main" xml:lang="en">Summer Night on the River</title>
+        <composer auth="VIAF" auth.uri="http://viaf.org/viaf/51874944">Frederick Delius</composer>
+        <creation><date isodate="1911">1911</date></creation>
+        <classification><termList><term type="genre">Orchestral</term></termList></classification>
+        <perfMedium><perfResList>
+          <perfRes codedval="orch">small orchestra</perfRes>
+        </perfResList></perfMedium>
+        <incip>
+          <tempo>Very quietly</tempo>
+          <meter count="4" unit="4"/>
+          <key pname="e" mode="minor">E minor</key>
+          <score>
+            <scoreDef meter.count="4" meter.unit="4" key.pname="e" key.mode="minor"/>
+            <section><measure n="1"><staff n="1"><layer n="1">
+              <note pname="e" oct="5" dur="8"/>
+              <note pname="f" oct="5" dur="8" accid="s"/>
+              <note pname="g" oct="5" dur="4"/>
+              <note pname="f" oct="5" dur="8" accid="s"/>
+              <note pname="e" oct="5" dur="8"/>
+              <note pname="b" oct="4" dur="4"/>
+            </layer></staff></measure></section>
+          </score>
+        </incip>
+        <history>
+          <p>Written as a companion piece to ‘On Hearing the First Cuckoo in Spring’, this evocation of a quiet river at night shares the same pair of Norwegian folk-song sources. The two works are almost always performed together and are considered among the finest examples of Delius's impressionistic orchestral writing, prizing atmosphere and slowly shifting harmony over conventional development.</p>
+          <eventList type="performances">
+            <event><date isodate="1913-10-23">1913-10-23</date><desc>World premiere, Leipzig, conducted by Arthur Nikisch.</desc></event>
+          </eventList>
+        </history>
+      </work>
+    </workList>
+  </meiHead>
+  <music><body><mdiv><score></score></mdiv></body></music>
+</mei>

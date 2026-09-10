@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title type="main" xml:lang="en">A Village Romeo and Juliet: The Walk to the Paradise Garden</title>
+        <respStmt>
+          <persName role="composer" auth="VIAF" auth.uri="http://viaf.org/viaf/51874944">Frederick Delius</persName>
+          <persName role="composer" auth="Wikidata" auth.uri="https://www.wikidata.org/wiki/Q312698">Frederick Delius</persName>
+          <persName role="composer" auth="MusicBrainz" auth.uri="https://musicbrainz.org/artist/2a006dfe-a7af-46d1-b38f-8c1d90dd230d">Frederick Delius</persName>
+        </respStmt>
+      </titleStmt>
+      <pubStmt>
+        <identifier type="DCW">23</identifier>
+
+      </pubStmt>
+      <sourceDesc>
+        <source type="manuscript">
+          <titleStmt><title>Autograph full score</title></titleStmt>
+          <physLoc><repository><corpName>British Library, London</corpName></repository>
+          <identifier type="shelfmark">Add MS 33751</identifier></physLoc>
+        </source>
+      </sourceDesc>
+    </fileDesc>
+    <workList>
+      <work>
+        <title type="main" xml:lang="en">A Village Romeo and Juliet: The Walk to the Paradise Garden</title>
+        <composer auth="VIAF" auth.uri="http://viaf.org/viaf/51874944">Frederick Delius</composer>
+        <creation><date isodate="1901">1901</date></creation>
+        <classification><termList><term type="genre">Opera</term></termList></classification>
+        <perfMedium><perfResList>
+          <perfRes codedval="orch">orchestra</perfRes>
+        </perfResList></perfMedium>
+        <incip>
+          <tempo>Andante</tempo>
+          <meter count="4" unit="4"/>
+          <key pname="g" mode="major">G major</key>
+          <score>
+            <scoreDef meter.count="4" meter.unit="4" key.pname="g" key.mode="major"/>
+            <section><measure n="1"><staff n="1"><layer n="1">
+              <note pname="g" oct="4" dur="4"/>
+              <note pname="b" oct="4" dur="8"/>
+              <note pname="d" oct="5" dur="8"/>
+              <note pname="g" oct="5" dur="4"/>
+              <note pname="a" oct="5" dur="4"/>
+            </layer></staff></measure></section>
+          </score>
+        </incip>
+        <history>
+          <p>This orchestral interlude from Delius's opera A Village Romeo and Juliet accompanies the two young lovers' final walk before their deaths, and has become far better known as a standalone concert piece than the opera itself. Its rich, slowly unfolding orchestration is frequently cited as one of the most representative examples of Delius's mature style.</p>
+          <eventList type="performances">
+            <event><date isodate="1907-02-21">1907-02-21</date><desc>Premiere of the opera, Komische Oper, Berlin, conducted by Fritz Cassirer.</desc></event>
+          </eventList>
+        </history>
+      </work>
+    </workList>
+  </meiHead>
+  <music><body><mdiv><score></score></mdiv></body></music>
+</mei>

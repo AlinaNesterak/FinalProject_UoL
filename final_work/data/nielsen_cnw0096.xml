@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title type="main" xml:lang="da">Klarinetkoncert</title>
+        <title type="main" xml:lang="en">Clarinet Concerto</title>
+        <respStmt>
+          <persName role="composer" auth="VIAF" auth.uri="http://viaf.org/viaf/197250">Carl Nielsen</persName>
+          <persName role="composer" auth="Wikidata" auth.uri="https://www.wikidata.org/wiki/Q205139">Carl Nielsen</persName>
+          <persName role="composer" auth="MusicBrainz" auth.uri="https://musicbrainz.org/artist/1be1367d-119f-4b08-bdfe-50b95043e544">Carl Nielsen</persName>
+        </respStmt>
+      </titleStmt>
+      <pubStmt>
+        <identifier type="CNW">96</identifier>
+        <identifier type="opus">57</identifier>
+      </pubStmt>
+      <sourceDesc>
+        <source type="manuscript">
+          <titleStmt><title>Autograph score</title></titleStmt>
+          <physLoc><repository><corpName>Royal Danish Library, Copenhagen</corpName></repository>
+          <identifier type="shelfmark">CNS 96</identifier></physLoc>
+        </source>
+      </sourceDesc>
+    </fileDesc>
+    <workList>
+      <work>
+        <title type="main" xml:lang="da">Klarinetkoncert</title>
+        <title type="main" xml:lang="en">Clarinet Concerto</title>
+        <composer auth="VIAF" auth.uri="http://viaf.org/viaf/197250">Carl Nielsen</composer>
+        <creation><date isodate="1928">1928</date></creation>
+        <classification><termList><term type="genre">Concerto</term></termList></classification>
+        <perfMedium><perfResList>
+          <perfRes codedval="cl">solo clarinet</perfRes>
+          <perfRes codedval="orch">orchestra</perfRes>
+        </perfResList></perfMedium>
+        <incip>
+          <tempo>Allegretto un poco</tempo>
+          <meter count="2" unit="4"/>
+          <key pname="f" mode="major">F major</key>
+          <score>
+            <scoreDef meter.count="2" meter.unit="4" key.pname="f" key.mode="major"/>
+            <section><measure n="1"><staff n="1"><layer n="1">
+              <note pname="f" oct="4" dur="8"/>
+              <note pname="a" oct="4" dur="8"/>
+              <note pname="c" oct="5" dur="4"/>
+              <note pname="b" oct="4" dur="8" accid="f"/>
+              <note pname="a" oct="4" dur="8"/>
+            </layer></staff></measure></section>
+          </score>
+        </incip>
+        <history>
+          <p>The last of Nielsen's wind concertos, written for clarinettist Aage Oxenvad, is notable for its single continuous movement and its deliberately unstable tonal centre, reflecting what Nielsen saw as the clarinet's contradictory character — by turns warm and aggressive. A prominent snare drum part shadows the soloist throughout, creating one of the concerto repertoire's most unusual dialogues.</p>
+          <eventList type="performances">
+            <event><date isodate="1928-09-14">1928-09-14</date><desc>World premiere, Copenhagen, with soloist Aage Oxenvad.</desc></event>
+          </eventList>
+        </history>
+      </work>
+    </workList>
+  </meiHead>
+  <music><body><mdiv><score></score></mdiv></body></music>
+</mei>

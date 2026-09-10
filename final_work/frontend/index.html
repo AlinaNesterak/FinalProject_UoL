@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music Works Catalogue Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:#1a1a18; --ink-soft:#3a3a36; --paper:#faf8f4; --paper-2:#f3efe7;
+    --line:#e0d9cc; --accent:#a67c3d; --accent-deep:#7a5527; --muted:#6e695f;
+    --focus:#8a6530;
+    --serif:'Cormorant Garamond',Georgia,serif; --sans:'Inter',-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+
+  /* Accessibility: visible focus everywhere */
+  :focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:2px}
+  .skip-link{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--paper);padding:0.7rem 1.2rem;z-index:100;font-weight:600}
+  .skip-link:focus{left:0.5rem;top:0.5rem}
+
+  header{background:var(--ink);color:var(--paper);padding:2.5rem 2rem 2.2rem;position:relative;overflow:hidden;border-bottom:3px solid var(--accent)}
+  header::after{content:"\266A";position:absolute;right:2.5rem;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:7rem;color:var(--accent);opacity:0.13;line-height:1;animation:floatNote 6s ease-in-out infinite}
+  @keyframes floatNote{0%,100%{transform:translateY(-50%)}50%{transform:translateY(-58%)}}
+  .header-inner{max-width:1160px;margin:0 auto;position:relative;z-index:1}
+  header .eyebrow{font-size:0.72rem;letter-spacing:0.32em;text-transform:uppercase;color:#c99a55;font-weight:500;margin-bottom:0.6rem;opacity:0;animation:fadeUp 0.7s ease 0.1s forwards}
+  header h1{font-family:var(--serif);font-size:3.2rem;font-weight:600;line-height:1.05;opacity:0;animation:fadeUp 0.7s ease 0.25s forwards}
+  header .tagline{font-family:var(--serif);font-style:italic;font-size:1.25rem;color:var(--paper-2);opacity:0;margin-top:0.5rem;animation:fadeUp 0.7s ease 0.4s forwards}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+  /* Accessibility: respect reduced-motion preference */
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation:none !important;transition:none !important}
+    header .eyebrow,header h1,header .tagline,.controls{opacity:1 !important}
+  }
+
+  .container{max-width:1160px;margin:0 auto;padding:2.2rem 2rem 1rem}
+  .controls{display:flex;gap:0.85rem;flex-wrap:wrap;align-items:center;margin-bottom:2rem;padding-bottom:1.6rem;border-bottom:1px solid var(--line);opacity:0;animation:fadeUp 0.6s ease 0.55s forwards}
+  .search-wrap{position:relative;flex:1;min-width:240px}
+  .search-wrap::before{content:"\2315";position:absolute;left:1rem;top:50%;transform:translateY(-50%);font-size:1.3rem;color:var(--muted);pointer-events:none}
+  input[type="search"]{width:100%;padding:0.85rem 1rem 0.85rem 2.6rem;border:1px solid var(--line);border-radius:2px;font-size:1rem;background:white;font-family:var(--sans);color:var(--ink);transition:border-color 0.25s,box-shadow 0.25s}
+  input[type="search"]:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(166,124,61,0.18)}
+  select{padding:0.85rem 1rem;border:1px solid var(--line);border-radius:2px;font-size:0.95rem;background:white;font-family:var(--sans);color:var(--ink);cursor:pointer}
+  button{padding:0.85rem 1.6rem;border:1px solid var(--ink);border-radius:2px;cursor:pointer;font-size:0.82rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;background:var(--ink);color:var(--paper);font-family:var(--sans);transition:all 0.25s ease}
+  button:hover{background:var(--accent-deep);border-color:var(--accent-deep);transform:translateY(-1px)}
+  button.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  button.ghost:hover{color:var(--accent-deep);border-color:var(--accent-deep)}
+
+  .layout{display:grid;grid-template-columns:1fr;gap:2rem}
+  @media(min-width:860px){.layout{grid-template-columns:1fr 1.05fr}}
+  .count{font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+
+  .work-list{display:flex;flex-direction:column;list-style:none}
+  .work-card{background:transparent;border:none;border-bottom:1px solid var(--line);padding:1.15rem 1rem 1.15rem 0.6rem;cursor:pointer;position:relative;transition:background 0.3s,padding-left 0.3s;animation:cardIn 0.5s ease backwards;width:100%;text-align:left;font-family:inherit}
+  @keyframes cardIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  .work-card::before{content:"";position:absolute;left:0;top:0;height:100%;width:0;background:var(--accent);transition:width 0.28s}
+  .work-card:hover,.work-card:focus-visible{background:var(--paper-2);padding-left:1.3rem}
+  .work-card:hover::before,.work-card:focus-visible::before{width:3px}
+  .work-card.active{background:var(--paper-2);padding-left:1.3rem}
+  .work-card.active::before{width:3px}
+  .work-card .title{font-family:var(--serif);font-weight:600;color:var(--ink);font-size:1.42rem;line-height:1.2}
+  .work-card .meta{font-size:0.82rem;color:var(--muted);margin-top:0.35rem;display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap}
+  .badge{display:inline-block;font-size:0.66rem;font-weight:600;letter-spacing:0.08em;padding:0.2rem 0.55rem;border:1px solid var(--accent);color:var(--accent-deep);border-radius:2px;text-transform:uppercase}
+
+  .detail{background:white;border:1px solid var(--line);border-radius:2px;padding:2rem 2.1rem;position:sticky;top:1.5rem;align-self:start;box-shadow:0 1px 3px rgba(26,26,24,0.04);animation:detailIn 0.45s ease}
+  @keyframes detailIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+  .detail .kicker{font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent-deep);font-weight:600;margin-bottom:0.5rem}
+  .detail h2{font-family:var(--serif);color:var(--ink);font-size:2.1rem;font-weight:600;line-height:1.12;margin-bottom:0.3rem}
+  .detail .subtitle{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:1.15rem;margin-bottom:1.5rem;padding-bottom:1.2rem;border-bottom:1px solid var(--line)}
+  .field{margin-bottom:0.7rem;font-size:0.95rem;display:flex;gap:1rem}
+  .field .label{font-weight:600;color:var(--ink-soft);flex:0 0 130px;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;padding-top:0.15rem}
+  .field .value{flex:1;color:var(--ink)}
+  .missing{color:var(--muted);font-style:italic}
+
+  /* Incipit block: notation + play */
+  .incipit-block{margin:1.2rem 0 0.4rem;padding:1rem;background:var(--paper);border-left:3px solid var(--accent);border-radius:2px}
+  .incipit-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem}
+  .incipit-title{font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .play-btn{padding:0.45rem 0.95rem;font-size:0.72rem;display:inline-flex;align-items:center;gap:0.45rem}
+  .play-btn .icon{font-size:0.85rem}
+  .notation{width:100%;height:auto;display:block}
+  .notation-caption{font-size:0.75rem;color:var(--muted);font-style:italic;margin-top:0.3rem}
+
+  .section{margin-top:1.8rem;padding-top:1.4rem;border-top:1px solid var(--line)}
+  .section h3{font-family:var(--serif);font-size:1.4rem;font-weight:600;color:var(--ink);margin-bottom:0.6rem}
+  .src-item{padding:0.65rem 0.2rem;border-bottom:1px solid var(--line);font-size:0.92rem}
+  .src-item:last-child{border-bottom:none}
+  .src-title{font-weight:600}
+  .src-meta{color:var(--muted);font-size:0.85rem;margin-top:0.15rem}
+  .src-type{display:inline-block;font-size:0.64rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:0.14rem 0.5rem;border-radius:2px;margin-left:0.5rem;vertical-align:middle}
+  .src-type.manuscript{background:#efe6d8;color:#6b4f22;border:1px solid #d9c49a}
+  .src-type.print{background:#e8ece8;color:#33513f;border:1px solid #b9c9bd}
+  .perf-item{display:flex;gap:1rem;padding:0.65rem 0.2rem;border-bottom:1px solid var(--line);font-size:0.92rem}
+  .perf-item:last-child{border-bottom:none}
+  .perf-date{font-weight:600;color:var(--accent-deep);flex:0 0 105px;font-variant-numeric:tabular-nums}
+  .disclaimer{font-size:0.78rem;color:var(--muted);font-style:italic;margin-bottom:0.9rem}
+  .similar-item{display:flex;justify-content:space-between;align-items:center;padding:0.8rem 0.2rem;border-bottom:1px solid var(--line);cursor:pointer;transition:padding-left 0.25s;background:none;border-left:none;border-right:none;border-top:none;width:100%;font-family:inherit;text-align:left}
+  .similar-item:last-child{border-bottom:none}
+  .similar-item:hover,.similar-item:focus-visible{padding-left:0.6rem}
+  .similar-item:hover .sim-title,.similar-item:focus-visible .sim-title{color:var(--accent-deep)}
+  .sim-title{font-family:var(--serif);font-size:1.15rem;transition:color 0.25s}
+  .score{font-weight:600;font-size:0.9rem;color:var(--ink);display:flex;align-items:center;gap:0.5rem}
+  .score-bar{width:46px;height:4px;background:var(--line);border-radius:2px;overflow:hidden}
+  .score-bar span{display:block;height:100%;background:var(--accent-deep);border-radius:2px}
+  .empty{color:var(--muted);text-align:center;padding:3rem 1rem;font-style:italic;font-family:var(--serif);font-size:1.2rem}
+  .placeholder{display:flex;align-items:center;justify-content:center;min-height:300px}
+  footer{text-align:center;padding:2.5rem 2rem 2rem;color:var(--muted);font-size:0.8rem;border-top:1px solid var(--line);margin-top:2rem}
+  footer a{color:var(--accent-deep);text-decoration:underline;text-underline-offset:3px}
+  footer .divider{margin:0 0.6rem;color:var(--line)}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+  /* ---------- History page (separate full page) ---------- */
+  .history-link{display:inline-flex;align-items:center;gap:0.4rem;margin-top:1.4rem;padding-top:1.2rem;border-top:1px solid var(--line);color:var(--accent-deep);text-decoration:none;font-size:0.85rem;font-weight:600;letter-spacing:0.02em}
+  .history-link:hover{text-decoration:underline}
+  .history-page{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
+  .history-back{display:inline-flex;align-items:center;gap:0.4rem;color:var(--paper-2);text-decoration:none;font-size:0.82rem;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.4rem}
+  .history-back:hover{color:var(--accent)}
+  .history-kicker{font-size:0.72rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--accent-deep);font-weight:600;margin-bottom:0.4rem}
+  .history-title{font-family:var(--serif);font-size:2.6rem;font-weight:600;line-height:1.1;color:var(--ink);margin-bottom:0.2rem}
+  .history-sub{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:1.3rem;margin-bottom:2rem}
+  .history-essay{font-family:var(--serif);font-size:1.28rem;line-height:1.75;color:var(--ink-soft)}
+  .history-essay p{margin-bottom:1.1rem}
+  .history-essay .dropcap::first-letter{font-size:3.4rem;float:left;line-height:0.8;padding-right:0.15rem;padding-top:0.2rem;color:var(--accent-deep);font-weight:600}
+  .history-no-essay{font-style:italic;color:var(--muted);padding:1.2rem 0}
+
+  /* Linked data badges (Wikidata / MusicBrainz) */
+  .linked-data{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.9rem}
+  .linked-badge{display:inline-flex;align-items:center;gap:0.35rem;font-size:0.74rem;font-weight:600;padding:0.32rem 0.7rem;border-radius:2px;text-decoration:none;letter-spacing:0.02em;border:1px solid var(--line);color:var(--ink-soft);transition:border-color 0.2s,color 0.2s}
+  .linked-badge:hover{border-color:var(--accent-deep);color:var(--accent-deep)}
+  .linked-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+  .linked-badge.score-badge{background:var(--ink);color:var(--paper);border-color:var(--ink);font-weight:600}
+  .linked-badge.score-badge:hover,.linked-badge.score-badge:focus-visible{background:var(--accent-deep);border-color:var(--accent-deep);color:var(--paper)}
+
+  /* ---------- Research / findings page ---------- */
+  .nav-link{color:var(--paper-2);text-decoration:none;font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.4rem 0;border-bottom:2px solid transparent;transition:border-color 0.2s,color 0.2s}
+  .nav-link:hover,.nav-link:focus-visible{color:var(--accent);border-bottom-color:var(--accent)}
+  .header-nav{display:flex;gap:1.6rem;margin-top:1.1rem}
+  .research-page{max-width:900px;margin:0 auto;padding:2.5rem 2rem 4rem}
+  .research-intro{font-family:var(--serif);font-size:1.28rem;line-height:1.7;color:var(--ink-soft);margin-bottom:2.2rem}
+  .finding{background:white;border:1px solid var(--line);border-left:3px solid var(--accent);padding:1.4rem 1.6rem;margin-bottom:1.5rem}
+  .finding h3{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--ink);margin-bottom:0.5rem}
+  .finding p{font-size:0.95rem;line-height:1.65;color:var(--ink-soft);margin-bottom:0.6rem}
+  .stat-row{display:flex;gap:1.2rem;flex-wrap:wrap;margin:1rem 0}
+  .stat{background:var(--paper);padding:0.8rem 1.1rem;border-radius:2px;min-width:110px}
+  .stat .num{font-family:var(--serif);font-size:1.9rem;font-weight:600;color:var(--accent-deep);line-height:1.1}
+  .stat .lbl{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-top:0.2rem}
+  .bar-chart{margin:1rem 0}
+  .bar-row{display:flex;align-items:center;gap:0.8rem;margin-bottom:0.45rem;font-size:0.85rem}
+  .bar-label{flex:0 0 130px;color:var(--ink-soft);text-align:right}
+  .bar-track{flex:1;height:16px;background:var(--paper-2);border-radius:2px;overflow:hidden;display:block}
+  .bar-fill{display:block;height:100%;background:var(--accent);border-radius:2px}
+  .bar-fill.full{background:var(--ink)}
+  .bar-val{flex:0 0 52px;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600}
+  .caveat{background:var(--paper-2);border-left:3px solid var(--muted);padding:1rem 1.2rem;font-size:0.88rem;color:var(--ink-soft);font-style:italic;margin-top:1.5rem}
+
+  /* ---------- Faceted browse controls ---------- */
+  .facets{display:flex;gap:0.75rem;flex-wrap:wrap;align-items:flex-end;margin-bottom:1.2rem}
+  .facet{display:flex;flex-direction:column;gap:0.25rem}
+  .facet label{font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .facet select,.facet input[type="number"]{padding:0.5rem 0.6rem;border:1px solid var(--line);border-radius:2px;font-family:var(--sans);font-size:0.88rem;background:white;color:var(--ink)}
+  .facet input[type="number"]{width:88px}
+  .facet-actions{display:flex;gap:0.5rem;align-items:flex-end}
+  .btn-small{padding:0.5rem 0.9rem;font-size:0.7rem}
+  .active-filters{display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.9rem}
+  .chip{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.74rem;padding:0.25rem 0.6rem;background:var(--paper-2);border:1px solid var(--line);border-radius:2px;color:var(--ink-soft)}
+  .chip button{background:none;border:none;padding:0 0 0 0.1rem;font-size:0.95rem;line-height:1;cursor:pointer;color:var(--muted);text-transform:none;letter-spacing:0}
+  .chip button:hover{color:var(--terra,#B85042);background:none;transform:none}
+  .export-bar{display:flex;gap:0.6rem;align-items:center;margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--line);font-size:0.8rem;color:var(--muted)}
+  .export-bar a{color:var(--accent-deep);text-decoration:none;border:1px solid var(--line);padding:0.4rem 0.8rem;border-radius:2px;font-weight:600;font-size:0.74rem;letter-spacing:0.06em;text-transform:uppercase;transition:border-color 0.2s,color 0.2s}
+  .export-bar a:hover,.export-bar a:focus-visible{border-color:var(--accent-deep);color:var(--ink)}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#workList">Skip to work list</a>
+<header role="banner">
+  <div class="header-inner">
+    <div class="eyebrow">A New Approach to Music Cataloguing</div>
+    <h1>Music Works Catalogue</h1>
+    <div class="tagline">Exploring the thematic catalogues of classical composers</div>
+    <nav class="header-nav" aria-label="Main navigation">
+      <a class="nav-link" href="#/">Catalogue</a>
+      <a class="nav-link" href="#/research">Research Findings</a>
+    </nav>
+  </div>
+</header>
+<main id="catalogueView" class="container" role="main" tabindex="-1">
+  <div class="controls" role="search">
+    <div class="search-wrap">
+      <label for="searchBox" class="sr-only">Search works by title, composer, or genre</label>
+      <input type="search" id="searchBox" placeholder="Search by title, composer, or genre&hellip;">
+    </div>
+    <button onclick="doSearch()" aria-label="Search the catalogue">Search</button>
+    <label for="catFilter" class="sr-only">Filter by catalogue</label>
+    <select id="catFilter" onchange="loadWorks()">
+      <option value="">All catalogues</option>
+    </select>
+    <button class="ghost" onclick="resetView()" aria-label="Reset search and filters">Reset</button>
+  </div>
+
+  <div class="facets" role="group" aria-label="Filter and sort the catalogue">
+    <div class="facet">
+      <label for="genreFilter">Genre</label>
+      <select id="genreFilter" onchange="applyFilters()"><option value="">Any genre</option></select>
+    </div>
+    <div class="facet">
+      <label for="keyFilter">Key</label>
+      <select id="keyFilter" onchange="applyFilters()"><option value="">Any key</option></select>
+    </div>
+    <div class="facet">
+      <label for="instrumentFilter">Instrument</label>
+      <select id="instrumentFilter" onchange="applyFilters()"><option value="">Any instrument</option></select>
+    </div>
+    <div class="facet">
+      <label for="yearFrom">Year from</label>
+      <input type="number" id="yearFrom" min="1800" max="2000" step="1" placeholder="1882" onchange="applyFilters()">
+    </div>
+    <div class="facet">
+      <label for="yearTo">Year to</label>
+      <input type="number" id="yearTo" min="1800" max="2000" step="1" placeholder="1928" onchange="applyFilters()">
+    </div>
+    <div class="facet">
+      <label for="sortBy">Sort by</label>
+      <select id="sortBy" onchange="applyFilters()">
+        <option value="catalogue">Catalogue no.</option>
+        <option value="date">Date</option>
+        <option value="title">Title</option>
+        <option value="composer">Composer</option>
+      </select>
+    </div>
+  </div>
+  <div class="active-filters" id="activeFilters" aria-live="polite"></div>
+  <div class="layout">
+    <section aria-label="Work list">
+      <div class="count" id="count" role="status" aria-live="polite"></div>
+      <div class="work-list" id="workList"></div>
+      <div class="export-bar">
+        <span>Export catalogue:</span>
+        <a href="/export/works.csv" download>CSV</a>
+        <a href="/export/works.json" download>JSON</a>
+      </div>
+    </section>
+    <section id="detailPane" aria-label="Work details" aria-live="polite">
+      <div class="detail placeholder"><div class="empty">Select a work to view its details</div></div>
+    </section>
+  </div>
+</main>
+
+<header id="historyHeader" class="history-topbar" style="display:none;background:var(--ink);padding:1.1rem 2rem;border-bottom:3px solid var(--accent)">
+  <a href="#/" class="history-back" onclick="return goToCatalogue()">&larr; Back to catalogue</a>
+</header>
+<main id="historyView" class="history-page" tabindex="-1" style="display:none"></main>
+<main id="researchView" class="research-page" tabindex="-1" style="display:none"></main>
+<footer role="contentinfo">
+  Music Works Catalogue Portal &middot; Prototype
+  <span class="divider">&middot;</span>
+  <a href="/docs" target="_blank" rel="noopener">API documentation</a>
+  <span class="divider">&middot;</span>
+  <a href="https://github.com/AlinaNesterak/FinalProject_UoL" target="_blank" rel="noopener">GitHub</a>
+</footer>
+<script>
+const API="";
+async function fetchJSON(u){const r=await fetch(API+u);if(!r.ok)throw new Error(r.status);return r.json();}
+async function loadCatalogues(){
+  try{const cats=await fetchJSON("/catalogues");const sel=document.getElementById("catFilter");
+    cats.forEach(c=>{const o=document.createElement("option");o.value=c.catalogue;o.textContent=c.catalogue+" \u2014 "+c.works+" works";sel.appendChild(o);});}catch(e){}}
+
+/* ---------- Faceted browsing ---------- */
+async function loadFacets(){
+  try{
+    const f=await fetchJSON("/facets");
+    const fill=(id,items)=>{
+      const sel=document.getElementById(id);
+      items.forEach(it=>{
+        const o=document.createElement("option");
+        o.value=it.value; o.textContent=it.value+" ("+it.count+")";
+        sel.appendChild(o);
+      });
+    };
+    fill("genreFilter", f.genres);
+    fill("keyFilter", f.keys);
+    fill("instrumentFilter", f.instruments);
+    if(f.year_min!=null) document.getElementById("yearFrom").placeholder=f.year_min;
+    if(f.year_max!=null) document.getElementById("yearTo").placeholder=f.year_max;
+  }catch(e){}
+}
+
+function currentFilters(){
+  return {
+    catalogue: document.getElementById("catFilter").value,
+    genre: document.getElementById("genreFilter").value,
+    key: document.getElementById("keyFilter").value,
+    instrument: document.getElementById("instrumentFilter").value,
+    year_from: document.getElementById("yearFrom").value,
+    year_to: document.getElementById("yearTo").value,
+    sort: document.getElementById("sortBy").value,
+  };
+}
+
+function renderActiveFilters(){
+  const f=currentFilters();
+  const labels={catalogue:"Catalogue",genre:"Genre",key:"Key",instrument:"Instrument",
+                year_from:"From",year_to:"To"};
+  const el=document.getElementById("activeFilters");
+  const chips=Object.entries(labels)
+    .filter(([k])=>f[k])
+    .map(([k,label])=>'<span class="chip">'+esc(label)+': '+esc(f[k])+
+      '<button onclick="clearFilter(\''+k+'\')" aria-label="Remove '+esc(label)+' filter">\u00D7</button></span>');
+  el.innerHTML=chips.join("");
+}
+
+const FILTER_IDS={catalogue:"catFilter",genre:"genreFilter",key:"keyFilter",
+                  instrument:"instrumentFilter",year_from:"yearFrom",year_to:"yearTo"};
+
+function clearFilter(name){
+  const id=FILTER_IDS[name];
+  if(id) document.getElementById(id).value="";
+  applyFilters();
+}
+
+async function applyFilters(){
+  const f=currentFilters();
+  const params=new URLSearchParams();
+  Object.entries(f).forEach(([k,v])=>{ if(v) params.set(k,v); });
+  // Clear any active free-text search, since filters and search are
+  // separate modes and combining them silently would be confusing.
+  document.getElementById("searchBox").value="";
+  renderActiveFilters();
+  try{ renderList(await fetchJSON("/works?"+params.toString())); }
+  catch(e){ document.getElementById("workList").innerHTML='<div class="empty">Could not load works.</div>'; }
+}
+async function loadWorks(){
+  // Delegates to applyFilters so the catalogue dropdown and the facet
+  // controls share one code path and can't drift out of sync.
+  return applyFilters();
+}
+async function doSearch(){
+  const q=document.getElementById("searchBox").value.trim();
+  if(!q){loadWorks();return;}
+  try{renderList(await fetchJSON("/works/search?q="+encodeURIComponent(q)),"Results for \u201C"+q+"\u201D");}
+  catch(e){document.getElementById("workList").innerHTML='<div class="empty">Search failed.</div>';}}
+function resetView(){
+  document.getElementById("searchBox").value="";
+  ["catFilter","genreFilter","keyFilter","instrumentFilter","yearFrom","yearTo"]
+    .forEach(id=>{const el=document.getElementById(id); if(el) el.value="";});
+  document.getElementById("sortBy").value="catalogue";
+  loadWorks();
+  document.getElementById("detailPane").innerHTML='<div class="detail placeholder"><div class="empty">Select a work to view its details</div></div>';}
+function renderList(works,heading){
+  const list=document.getElementById("workList");
+  document.getElementById("count").textContent=heading?heading+" \u2014 "+works.length+" work(s)":works.length+" work(s) in view";
+  if(!works.length){list.innerHTML='<div class="empty">No works found</div>';return;}
+  list.innerHTML="";
+  works.forEach((w,i)=>{
+    const card=document.createElement("button");
+    card.className="work-card";card.style.animationDelay=(i*0.04)+"s";
+    card.setAttribute("aria-label","View details for "+(w.title_main||w.work_id)+" by "+(w.composer||"unknown composer"));
+    card.onclick=()=>{showDetail(w.work_id);highlight(card);};
+    card.innerHTML='<div class="title">'+esc(w.title_main||"(untitled)")+'</div>'+
+      '<div class="meta"><span class="badge">'+esc(w.work_id)+'</span><span>'+esc(w.composer||"")+'</span><span aria-hidden="true">\u00B7</span><span>'+esc(w.genre||"\u2014")+'</span></div>';
+    list.appendChild(card);});}
+function highlight(card){document.querySelectorAll(".work-card").forEach(c=>c.classList.remove("active"));card.classList.add("active");}
+async function showDetail(id){
+  const pane=document.getElementById("detailPane");
+  pane.innerHTML='<div class="detail placeholder"><div class="empty">Loading\u2026</div></div>';
+  try{const w=await fetchJSON("/works/"+encodeURIComponent(id));
+    let sim=[];try{sim=await fetchJSON("/works/"+encodeURIComponent(id)+"/similar");}catch{}
+    pane.innerHTML=renderDetail(w,sim);
+    drawNotation(w);
+    const pb=document.getElementById("playBtn");
+    if(pb) pb.onclick=()=>playIncipit(w.incipit_pitches,w.incipit_durations,pb);
+  }catch(e){pane.innerHTML='<div class="detail placeholder"><div class="empty">Could not load details</div></div>';}}
+function fld(l,v){
+  const val=(v&&(!Array.isArray(v)||v.length))?(Array.isArray(v)?v.join(", "):v):null;
+  return '<div class="field"><span class="label">'+l+'</span>'+(val?'<span class="value">'+esc(val)+'</span>':'<span class="value missing">not recorded</span>')+'</div>';}
+
+function linkedDataHtml(w){
+  // Prefer a work-specific Wikidata/MusicBrainz entry where one has been
+  // independently verified; otherwise fall back to the composer's entry,
+  // clearly labelled either way so the level of specificity is honest.
+  const badges=[];
+  if(w.work_wikidata) badges.push(['Wikidata (this work)', w.work_wikidata, false]);
+  else if(w.composer_wikidata) badges.push(['Wikidata (composer)', w.composer_wikidata, false]);
+  if(w.work_musicbrainz) badges.push(['MusicBrainz (this work)', w.work_musicbrainz, false]);
+  else if(w.composer_musicbrainz) badges.push(['MusicBrainz (composer)', w.composer_musicbrainz, false]);
+  // IMSLP is highlighted separately: unlike the identifier links above, it
+  // takes the user to free downloadable sheet music, completing the journey
+  // from catalogue record to the score itself.
+  if(w.imslp_url) badges.push(['\u2193 Free score on IMSLP', w.imslp_url, true]);
+  if(!badges.length) return "";
+  return '<div class="linked-data">'+badges.map(([label,url,isScore])=>
+    '<a class="linked-badge'+(isScore?' score-badge':'')+'" href="'+esc(url)+'" target="_blank" rel="noopener">'+
+    (isScore?'':'<span class="dot" aria-hidden="true"></span>')+esc(label)+'</a>').join("")+'</div>';
+}
+
+function renderDetail(w,sim){
+  // Incipit block with notation + play button (only if pitches exist)
+  let incipitHtml="";
+  if(w.incipit_pitches&&w.incipit_pitches.length){
+    incipitHtml='<div class="incipit-block">'+
+      '<div class="incipit-head"><span class="incipit-title">Incipit \u2014 opening theme</span>'+
+      '<button id="playBtn" class="play-btn" aria-label="Play the opening notes of this work"><span class="icon" aria-hidden="true">\u25B6</span> Play</button></div>'+
+      '<svg id="notation" class="notation" role="img" aria-label="Musical notation of the opening theme: '+esc(w.incipit_pitches.join(", "))+'"></svg>'+
+      '<div class="notation-caption">'+esc(w.incipit_tempo||"")+(w.incipit_key?' \u00B7 '+esc(w.incipit_key):'')+(w.incipit_meter?' \u00B7 '+esc(w.incipit_meter):'')+'</div></div>';
+  }
+  // Manuscripts & sources
+  let srcHtml="";
+  if(w.sources&&w.sources.length){
+    srcHtml='<div class="section"><h3>Manuscripts &amp; Sources</h3>'+
+      w.sources.map(s=>'<div class="src-item"><span class="src-title">'+esc(s.title||"Untitled source")+'</span>'+
+        (s.type?'<span class="src-type '+esc(s.type)+'">'+esc(s.type)+'</span>':'')+
+        '<div class="src-meta">'+esc(s.repository||"")+(s.shelfmark?' \u00B7 Shelfmark: '+esc(s.shelfmark):'')+'</div></div>').join("")+'</div>';}
+  // Performance history
+  let perfHtml="";
+  if(w.performances&&w.performances.length){
+    perfHtml='<div class="section"><h3>Performance History</h3>'+
+      w.performances.map(p=>'<div class="perf-item"><span class="perf-date">'+esc(p.date||"")+'</span><span>'+esc(p.description||"")+'</span></div>').join("")+'</div>';}
+  // Similar works
+  let simHtml="";
+  if(sim&&sim.length){
+    simHtml='<div class="section"><h3>Melodically Similar Works</h3>'+
+      '<div class="disclaimer">Computational suggestions based on incipit similarity &mdash; not scholarly claims.</div>'+
+      sim.map(s=>'<button class="similar-item" onclick="showDetail(\''+esc(s.work_id)+'\')" aria-label="View '+esc(s.title||s.work_id)+', similarity score '+s.score.toFixed(2)+'">'+
+        '<span class="sim-title">'+esc(s.title||s.work_id)+' <span class="badge">'+esc(s.work_id)+'</span></span>'+
+        '<span class="score"><span class="score-bar" aria-hidden="true"><span style="width:'+Math.round(s.score*100)+'%"></span></span>'+s.score.toFixed(2)+'</span></button>').join("")+'</div>';}
+  return '<div class="detail">'+
+    '<div class="kicker">'+esc(w.catalogue)+' \u00B7 '+esc(w.work_id)+'</div>'+
+    '<h2>'+esc(w.title_main||"(untitled)")+'</h2>'+
+    '<div class="subtitle">'+esc(w.composer||"")+'</div>'+
+    fld("Opus",w.opus)+fld("Genre",w.genre)+fld("Date",w.date_text)+
+    fld("Danish title",w.title_da)+fld("English title",w.title_en)+
+    fld("Instrumentation",w.instrumentation)+
+    linkedDataHtml(w)+
+    incipitHtml+srcHtml+perfHtml+
+    '<a class="history-link" href="#/history/'+encodeURIComponent(w.work_id)+'">Read the full composition history &rarr;</a>'+
+    simHtml+'</div>';}
+
+/* ---------- WOW 1: SVG notation rendering ---------- */
+const STEP={C:0,D:1,E:2,F:3,G:4,A:5,B:6};
+function diatonicIndex(p){ // "F#5" -> diatonic step index for vertical placement
+  const m=p.match(/^([A-G])([#b]*)(\d)$/); if(!m)return null;
+  return STEP[m[1]]+7*parseInt(m[3]);}
+function drawNotation(w){
+  const svg=document.getElementById("notation"); if(!svg)return;
+  const pitches=w.incipit_pitches||[], durs=w.incipit_durations||[];
+  if(!pitches.length)return;
+  const n=pitches.length, noteGap=64, left=70, right=30;
+  const width=left+n*noteGap+right, height=130, staffTop=35, lineGap=11;
+  svg.setAttribute("viewBox","0 0 "+width+" "+height);
+  let elems="";
+  // 5 staff lines
+  for(let i=0;i<5;i++){const y=staffTop+i*lineGap;
+    elems+='<line x1="10" y1="'+y+'" x2="'+(width-10)+'" y2="'+y+'" stroke="#3a3a36" stroke-width="1"/>';}
+  // Treble clef (text glyph)
+  elems+='<text x="18" y="'+(staffTop+3.55*lineGap)+'" font-size="'+(lineGap*4.6)+'" font-family="serif" fill="#1a1a18">\uD834\uDD1E</text>';
+  // E5 (top space ref): staff top line is F5 in treble; use diatonic mapping
+  const topLineIdx=diatonicIndex("F5"); // y = staffTop for F5
+  pitches.forEach((p,i)=>{
+    const di=diatonicIndex(p); if(di==null)return;
+    const y=staffTop+(topLineIdx-di)*(lineGap/2);
+    const x=left+i*noteGap;
+    const dur=durs[i]||4;
+    const filled=dur>=4; // quarter and shorter: filled head
+    // ledger lines if needed
+    for(let ly=staffTop-lineGap; ly>=y-2; ly-=lineGap) elems+='<line x1="'+(x-10)+'" y1="'+ly+'" x2="'+(x+10)+'" y2="'+ly+'" stroke="#3a3a36" stroke-width="1"/>';
+    for(let ly=staffTop+5*lineGap; ly<=y+2; ly+=lineGap) elems+='<line x1="'+(x-10)+'" y1="'+ly+'" x2="'+(x+10)+'" y2="'+ly+'" stroke="#3a3a36" stroke-width="1"/>';
+    // accidental
+    if(p.includes("#")) elems+='<text x="'+(x-16)+'" y="'+(y+4)+'" font-size="14" font-family="serif" fill="#1a1a18">\u266F</text>';
+    if(p.includes("b")&&p.length>2) elems+='<text x="'+(x-15)+'" y="'+(y+4)+'" font-size="14" font-family="serif" fill="#1a1a18">\u266D</text>';
+    // note head
+    elems+='<ellipse cx="'+x+'" cy="'+y+'" rx="6.4" ry="4.8" fill="'+(filled?'#1a1a18':'none')+'" stroke="#1a1a18" stroke-width="1.6" transform="rotate(-14 '+x+' '+y+')"/>';
+    // stem (up if below middle line, down if above)
+    const mid=staffTop+2*lineGap;
+    if(y>=mid) elems+='<line x1="'+(x+6)+'" y1="'+y+'" x2="'+(x+6)+'" y2="'+(y-30)+'" stroke="#1a1a18" stroke-width="1.5"/>';
+    else elems+='<line x1="'+(x-6)+'" y1="'+y+'" x2="'+(x-6)+'" y2="'+(y+30)+'" stroke="#1a1a18" stroke-width="1.5"/>';
+    // flag for eighth notes
+    if(dur>=8){const sx=y>=mid?x+6:x-6, sy=y>=mid?y-30:y+30, dir=y>=mid?1:-1;
+      elems+='<path d="M '+sx+' '+sy+' q 9 '+(6*dir)+' 5 '+(16*dir)+'" stroke="#1a1a18" stroke-width="2" fill="none"/>';}
+  });
+  svg.innerHTML=elems;}
+
+/* ---------- WOW 2: Web Audio incipit playback ---------- */
+const SEMI={C:0,D:2,E:4,F:5,G:7,A:9,B:11};
+function toFreq(p){
+  const m=p.match(/^([A-G])([#b]*)(\d)$/); if(!m)return null;
+  let s=SEMI[m[1]];
+  for(const c of m[2]) s+= c==="#"?1:-1;
+  const midi=s+(parseInt(m[3])+1)*12;
+  return 440*Math.pow(2,(midi-69)/12);}
+let audioCtx=null, playing=false;
+function playIncipit(pitches,durs,btn){
+  if(playing)return;
+  if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+  playing=true; btn.disabled=true; btn.innerHTML='<span class="icon" aria-hidden="true">\u266B</span> Playing\u2026';
+  const bpm=100, beat=60/bpm; let t=audioCtx.currentTime+0.08;
+  pitches.forEach((p,i)=>{
+    const f=toFreq(p); if(!f)return;
+    const durBeats=4/(durs[i]||4); // dur 4 = 1 beat, dur 8 = 0.5
+    const len=durBeats*beat*0.92;
+    const o=audioCtx.createOscillator(), g=audioCtx.createGain();
+    o.type="sine"; o.frequency.value=f;
+    // soft envelope
+    g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(0.22,t+0.02);
+    g.gain.exponentialRampToValueAtTime(0.001,t+len);
+    o.connect(g); g.connect(audioCtx.destination);
+    o.start(t); o.stop(t+len+0.05);
+    t+=durBeats*beat;});
+  setTimeout(()=>{playing=false;btn.disabled=false;
+    btn.innerHTML='<span class="icon" aria-hidden="true">\u25B6</span> Play';},(t-audioCtx.currentTime)*1000+150);}
+
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+/* ---------- Hash-based navigation: separate History page ---------- */
+function goToCatalogue(){ window.location.hash="#/"; return false; }
+
+async function showHistoryPage(workId){
+  document.getElementById("catalogueView").style.display="none";
+  document.getElementById("researchView").style.display="none";
+  document.getElementById("historyHeader").style.display="block";
+  const view=document.getElementById("historyView");
+  view.style.display="block";
+  view.innerHTML='<div class="empty">Loading\u2026</div>';
+  window.scrollTo(0,0);
+  try{
+    const w=await fetchJSON("/works/"+encodeURIComponent(workId));
+    document.title="History \u2014 "+(w.title_main||w.work_id)+" \u2014 Music Works Catalogue";
+    const essay=w.history_note
+      ? '<div class="history-essay"><p class="dropcap">'+esc(w.history_note)+'</p></div>'
+      : '<div class="history-no-essay">No composition history has been recorded for this work yet.</div>';
+    let srcHtml="";
+    if(w.sources&&w.sources.length){
+      srcHtml='<div class="section"><h3>Manuscripts &amp; Sources</h3>'+
+        w.sources.map(s=>'<div class="src-item"><span class="src-title">'+esc(s.title||"Untitled source")+'</span>'+
+          (s.type?'<span class="src-type '+esc(s.type)+'">'+esc(s.type)+'</span>':'')+
+          '<div class="src-meta">'+esc(s.repository||"")+(s.shelfmark?' \u00B7 Shelfmark: '+esc(s.shelfmark):'')+'</div></div>').join("")+'</div>';}
+    let perfHtml="";
+    if(w.performances&&w.performances.length){
+      perfHtml='<div class="section"><h3>Performance History</h3>'+
+        w.performances.map(p=>'<div class="perf-item"><span class="perf-date">'+esc(p.date||"")+'</span><span>'+esc(p.description||"")+'</span></div>').join("")+'</div>';}
+    view.innerHTML=
+      '<div class="history-kicker">'+esc(w.catalogue)+' '+esc(w.catalogue_number||"")+' \u00B7 Composition History</div>'+
+      '<h1 class="history-title">'+esc(w.title_main||w.work_id)+'</h1>'+
+      '<div class="history-sub">'+esc(w.composer||"")+(w.date_text?' \u00B7 '+esc(w.date_text):'')+'</div>'+
+      linkedDataHtml(w)+
+      essay+srcHtml+perfHtml;
+    // Accessibility: move focus to the newly-shown page so keyboard and
+    // screen-reader users are told the view changed, rather than being
+    // silently left on the (now hidden) catalogue behind it.
+    view.focus();
+  }catch(e){
+    view.innerHTML='<div class="empty">Could not load this work\u2019s history.</div>';
+    view.focus();
+  }
+}
+
+/* ---------- Research findings page ---------- */
+function bar(label, present, total, percent){
+  const cls = percent === 100 ? "bar-fill full" : "bar-fill";
+  return '<div class="bar-row"><span class="bar-label">'+esc(label)+'</span>'+
+    '<span class="bar-track"><span class="'+cls+'" style="width:'+percent+'%"></span></span>'+
+    '<span class="bar-val">'+percent+'%</span></div>';
+}
+
+async function showResearchPage(){
+  document.getElementById("catalogueView").style.display="none";
+  document.getElementById("historyHeader").style.display="none";
+  document.getElementById("historyView").style.display="none";
+  const view=document.getElementById("researchView");
+  view.style.display="block";
+  view.innerHTML='<div class="empty">Loading findings\u2026</div>';
+  window.scrollTo(0,0);
+  document.title="Research Findings \u2014 Music Works Catalogue";
+  try{
+    const f=await fetchJSON("/findings");
+    const cov=f.field_coverage;
+    const labels={title_main:"Title",composer:"Composer",opus:"Opus number",
+      title_da:"Danish title",date_text:"Date",genre:"Genre",
+      incipit_pitches:"Incipit",sources:"Sources",performances:"Performances"};
+    const bars=Object.keys(labels).map(k=>cov[k]?bar(labels[k],cov[k].present,cov[k].total,cov[k].percent):"").join("");
+    const genreRows=Object.entries(f.genres).sort((a,b)=>b[1]-a[1])
+      .map(([g,n])=>'<div class="bar-row"><span class="bar-label">'+esc(g)+'</span>'+
+        '<span class="bar-track"><span class="bar-fill" style="width:'+Math.round(100*n/f.total_works)+'%"></span></span>'+
+        '<span class="bar-val">'+n+'</span></div>').join("");
+    const incLengths=Object.entries(f.incipit_lengths).sort()
+      .map(([len,n])=>esc(len)+' notes: '+n+' work'+(n===1?'':'s')).join(" \u00B7 ");
+
+    view.innerHTML=
+      '<h1 class="history-title">Research Findings</h1>'+
+      '<p class="research-intro">This project set out to answer a question the existing literature leaves open: '+
+      'does the MEI catalogue model actually deliver the interoperability it promises? '+
+      'The figures below are computed live from the '+f.total_works+' works currently loaded, '+
+      'and form the empirical basis for this project\u2019s assessment of that model.</p>'+
+
+      '<div class="stat-row">'+
+        '<div class="stat"><div class="num">'+f.total_works+'</div><div class="lbl">Works</div></div>'+
+        '<div class="stat"><div class="num">'+Object.keys(f.catalogues).length+'</div><div class="lbl">Catalogues</div></div>'+
+        '<div class="stat"><div class="num">'+f.total_sources+'</div><div class="lbl">Sources</div></div>'+
+        '<div class="stat"><div class="num">'+f.total_performances+'</div><div class="lbl">Performances</div></div>'+
+      '</div>'+
+
+      '<div class="finding"><h3>Finding 1 \u2014 Optional fields are populated unevenly</h3>'+
+      '<p>MEI makes most catalogue fields optional. In practice this means coverage varies widely, '+
+      'even within a single carefully-prepared dataset. Core bibliographic fields are always present, '+
+      'but others are not \u2014 and crucially, the schema gives a parser no way to distinguish '+
+      '\u201Cthis field does not apply\u201D from \u201Cthis field was never entered\u201D.</p>'+
+      '<div class="bar-chart">'+bars+'</div></div>'+
+
+      '<div class="finding"><h3>Finding 2 \u2014 Incipits are too short for reliable computational use</h3>'+
+      '<p>Every incipit in the source catalogues captures only the opening few notes: '+esc(incLengths)+'. '+
+      'That is enough for a human to recognise a work at a glance \u2014 the traditional purpose of a thematic '+
+      'catalogue \u2014 but this project\u2019s Works Discovery Engine found it carries too little information for '+
+      'automated melodic comparison to be dependable. Adding rhythm to the comparison fixed one documented '+
+      'failure case, but a second known-related pair still ties with an unrelated control. '+
+      'This is reported as a genuine limitation rather than adjusted away.</p></div>'+
+
+      '<div class="finding"><h3>Finding 3 \u2014 A catalogue-agnostic pipeline is achievable</h3>'+
+      '<p>Because MEI leaves the catalogue identifier type open, the same transformation pipeline ingests '+
+      'both the Carl Nielsen (CNW) and Frederick Delius (DCW) catalogues with no code changes at all. '+
+      'This is a real strength of the standard, and supports the argument that cross-catalogue tooling '+
+      'is practical where the encoding is consistent.</p>'+
+      '<div class="bar-chart">'+genreRows+'</div>'+
+      '<p style="margin-top:0.8rem">Genre distribution across the loaded works.</p></div>'+
+
+      '<div class="caveat">Scope: these findings are drawn from '+f.total_works+' works reconstructed in MEI 4.0 '+
+      'from the published Nielsen and Delius catalogues. That is a small fraction of the full Nielsen catalogue '+
+      '(~750 works), so the percentages are indicative rather than definitive. They are reported here because '+
+      'the pattern they show \u2014 uneven optional-field coverage, and incipits too short for computational reuse \u2014 '+
+      'is consistent across every work examined, and matches concerns raised independently in the literature.</div>';
+    view.focus();
+  }catch(e){
+    view.innerHTML='<div class="empty">Could not load research findings.</div>';
+    view.focus();
+  }
+}
+
+function showCatalogueView(opts){
+  document.getElementById("historyHeader").style.display="none";
+  document.getElementById("historyView").style.display="none";
+  document.getElementById("researchView").style.display="none";
+  const cat=document.getElementById("catalogueView");
+  cat.style.display="block";
+  document.title="Music Works Catalogue Portal";
+  // Only steal focus when returning from another view, not on first load —
+  // on first load the user should start at the top of the document as normal.
+  if(opts&&opts.returning) cat.focus();
+}
+
+let _routedOnce=false;
+function router(){
+  const h=window.location.hash; // "#/history/CNW%20102", "#/research", "#/" or ""
+  const m=h.match(/^#\/history\/(.+)$/);
+  if(m){ showHistoryPage(decodeURIComponent(m[1])); }
+  else if(h==="#/research"){ showResearchPage(); }
+  else { showCatalogueView({returning:_routedOnce}); }
+  _routedOnce=true;
+}
+window.addEventListener("hashchange", router);
+
+loadCatalogues();loadFacets();loadWorks();
+document.getElementById("searchBox").addEventListener("keydown",e=>{if(e.key==="Enter")doSearch();});
+router(); // handle a direct link / page refresh landing on a history URL
+</script>
+</body>
+</html>

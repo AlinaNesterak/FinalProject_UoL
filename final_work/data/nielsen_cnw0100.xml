@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title type="main" xml:lang="da">Symfoni nr. 5</title>
+        <title type="main" xml:lang="en">Symphony No. 5</title>
+        <respStmt>
+          <persName role="composer" auth="VIAF" auth.uri="http://viaf.org/viaf/197250">Carl Nielsen</persName>
+          <persName role="composer" auth="Wikidata" auth.uri="https://www.wikidata.org/wiki/Q205139">Carl Nielsen</persName>
+          <persName role="composer" auth="MusicBrainz" auth.uri="https://musicbrainz.org/artist/1be1367d-119f-4b08-bdfe-50b95043e544">Carl Nielsen</persName>
+        </respStmt>
+      </titleStmt>
+      <pubStmt>
+        <identifier type="CNW">100</identifier>
+        <identifier type="opus">50</identifier>
+        <identifier type="IMSLP">https://imslp.org/wiki/Symphony_No.5,_Op.50_(Nielsen,_Carl)</identifier>
+      </pubStmt>
+      <sourceDesc>
+        <source type="manuscript">
+          <titleStmt><title>Autograph score</title></titleStmt>
+          <physLoc><repository><corpName>Royal Danish Library, Copenhagen</corpName></repository>
+          <identifier type="shelfmark">CNS 100</identifier></physLoc>
+        </source>
+        <source type="print">
+          <titleStmt><title>First edition</title></titleStmt>
+          <physLoc><repository><corpName>Skandinavisk og Borups Musikforlag 1926</corpName></repository>
+          <identifier type="shelfmark">SB 221</identifier></physLoc>
+        </source>
+      </sourceDesc>
+    </fileDesc>
+    <workList>
+      <work>
+        <title type="main" xml:lang="da">Symfoni nr. 5</title>
+        <title type="main" xml:lang="en">Symphony No. 5</title>
+        <composer auth="VIAF" auth.uri="http://viaf.org/viaf/197250">Carl Nielsen</composer>
+        <creation><date notbefore="1921" notafter="1922">1921–1922</date></creation>
+        <classification><termList><term type="genre">Symphony</term></termList></classification>
+        <perfMedium><perfResList>
+          <perfRes codedval="orch">orchestra</perfRes>
+        </perfResList></perfMedium>
+        <incip>
+          <tempo>Tempo giusto</tempo>
+          <meter count="4" unit="4"/>
+          <key pname="f" mode="major">F major</key>
+          <score>
+            <scoreDef meter.count="4" meter.unit="4" key.pname="f" key.mode="major"/>
+            <section><measure n="1"><staff n="1"><layer n="1">
+              <note pname="a" oct="4" dur="8"/>
+              <note pname="c" oct="5" dur="8"/>
+              <note pname="f" oct="5" dur="4"/>
+              <note pname="e" oct="5" dur="8"/>
+              <note pname="f" oct="5" dur="8"/>
+            </layer></staff></measure></section>
+          </score>
+        </incip>
+        <history>
+          <p>Composed in the aftermath of the First World War, the Fifth Symphony is built from two large movements rather than the traditional four and famously calls for a side-drum player instructed to improvise ‘as if to disturb the music at all costs’ — a starkly modern gesture that has made the symphony a landmark of the twentieth-century orchestral repertoire.</p>
+          <eventList type="performances">
+            <event><date isodate="1922-01-24">1922-01-24</date><desc>World premiere, Copenhagen, conducted by the composer.</desc></event>
+          </eventList>
+        </history>
+      </work>
+    </workList>
+  </meiHead>
+  <music><body><mdiv><score></score></mdiv></body></music>
+</mei>

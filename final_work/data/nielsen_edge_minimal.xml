@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title type="main" xml:lang="da">Ukendt værk</title>
+        <respStmt>
+          <persName role="composer">Carl Nielsen</persName>
+        </respStmt>
+      </titleStmt>
+      <pubStmt>
+        <identifier type="CNW">999</identifier>
+      </pubStmt>
+    </fileDesc>
+    <workList>
+      <work>
+        <title type="main" xml:lang="da">Ukendt værk</title>
+        <composer>Carl Nielsen</composer>
+      </work>
+    </workList>
+  </meiHead>
+  <music><body><mdiv><score></score></mdiv></body></music>
+</mei>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title type="main" xml:lang="da">Symfoni nr. 3 ‘Sinfonia espansiva’</title>
+        <title type="main" xml:lang="en">Symphony No. 3 ‘Sinfonia Espansiva’</title>
+        <respStmt>
+          <persName role="composer" auth="VIAF" auth.uri="http://viaf.org/viaf/197250">Carl Nielsen</persName>
+          <persName role="composer" auth="Wikidata" auth.uri="https://www.wikidata.org/wiki/Q205139">Carl Nielsen</persName>
+          <persName role="composer" auth="MusicBrainz" auth.uri="https://musicbrainz.org/artist/1be1367d-119f-4b08-bdfe-50b95043e544">Carl Nielsen</persName>
+        </respStmt>
+      </titleStmt>
+      <pubStmt>
+        <identifier type="CNW">46</identifier>
+        <identifier type="opus">27</identifier>
+        <identifier type="IMSLP">https://imslp.org/wiki/Symphony_No.3,_Op.27_(Nielsen,_Carl)</identifier>
+      </pubStmt>
+      <sourceDesc>
+        <source type="manuscript">
+          <titleStmt><title>Autograph score</title></titleStmt>
+          <physLoc><repository><corpName>Royal Danish Library, Copenhagen</corpName></repository>
+          <identifier type="shelfmark">CNS 46</identifier></physLoc>
+        </source>
+        <source type="print">
+          <titleStmt><title>First edition</title></titleStmt>
+          <physLoc><repository><corpName>Wilhelm Hansen 1913</corpName></repository>
+          <identifier type="shelfmark">WH 14488</identifier></physLoc>
+        </source>
+      </sourceDesc>
+    </fileDesc>
+    <workList>
+      <work>
+        <title type="main" xml:lang="da">Symfoni nr. 3 ‘Sinfonia espansiva’</title>
+        <title type="main" xml:lang="en">Symphony No. 3 ‘Sinfonia Espansiva’</title>
+        <composer auth="VIAF" auth.uri="http://viaf.org/viaf/197250">Carl Nielsen</composer>
+        <creation><date notbefore="1910" notafter="1911">1910–1911</date></creation>
+        <classification><termList><term type="genre">Symphony</term></termList></classification>
+        <perfMedium><perfResList>
+          <perfRes codedval="orch">orchestra</perfRes>
+        </perfResList></perfMedium>
+        <incip>
+          <tempo>Allegro espansivo</tempo>
+          <meter count="3" unit="4"/>
+          <key pname="d" mode="major">D major</key>
+          <score>
+            <scoreDef meter.count="3" meter.unit="4" key.pname="d" key.mode="major"/>
+            <section><measure n="1"><staff n="1"><layer n="1">
+              <note pname="d" oct="5" dur="4"/>
+              <note pname="a" oct="5" dur="8"/>
+              <note pname="f" oct="5" dur="8" accid="s"/>
+              <note pname="d" oct="5" dur="4"/>
+              <note pname="a" oct="4" dur="4"/>
+            </layer></staff></measure></section>
+          </score>
+        </incip>
+        <history>
+          <p>Subtitled ‘Sinfonia espansiva’, the Third Symphony reflects an expansive, life-affirming mood that Nielsen contrasted with the darker tone of his later Fourth. Its second movement features two wordless solo voices, an unusual and much-noted touch for a symphonic slow movement of its era.</p>
+          <eventList type="performances">
+            <event><date isodate="1912-02-28">1912-02-28</date><desc>World premiere, Copenhagen, conducted by the composer.</desc></event>
+            <event><date isodate="1913-03-19">1913-03-19</date><desc>Amsterdam performance conducted by Willem Mengelberg.</desc></event>
+          </eventList>
+        </history>
+      </work>
+    </workList>
+  </meiHead>
+  <music><body><mdiv><score></score></mdiv></body></music>
+</mei>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title type="main" xml:lang="en">Sea Drift</title>
+        <respStmt>
+          <persName role="composer" auth="VIAF" auth.uri="http://viaf.org/viaf/51874944">Frederick Delius</persName>
+          <persName role="composer" auth="Wikidata" auth.uri="https://www.wikidata.org/wiki/Q312698">Frederick Delius</persName>
+          <persName role="composer" auth="MusicBrainz" auth.uri="https://musicbrainz.org/artist/2a006dfe-a7af-46d1-b38f-8c1d90dd230d">Frederick Delius</persName>
+        </respStmt>
+      </titleStmt>
+      <pubStmt>
+        <identifier type="DCW">15</identifier>
+
+        <identifier type="IMSLP">https://imslp.org/wiki/Sea-Drift_(Delius,_Frederick)</identifier>
+      </pubStmt>
+      <sourceDesc>
+        <source type="manuscript">
+          <titleStmt><title>Autograph full score</title></titleStmt>
+          <physLoc><repository><corpName>British Library, London</corpName></repository>
+          <identifier type="shelfmark">Add MS 33748</identifier></physLoc>
+        </source>
+        <source type="print">
+          <titleStmt><title>First edition</title></titleStmt>
+          <physLoc><repository><corpName>Harmonie-Verlag, Berlin 1907</corpName></repository>
+          <identifier type="shelfmark">HV 210</identifier></physLoc>
+        </source>
+      </sourceDesc>
+    </fileDesc>
+    <workList>
+      <work>
+        <title type="main" xml:lang="en">Sea Drift</title>
+        <composer auth="VIAF" auth.uri="http://viaf.org/viaf/51874944">Frederick Delius</composer>
+        <creation><date isodate="1903">1903</date></creation>
+        <classification><termList><term type="genre">Choral</term></termList></classification>
+        <perfMedium><perfResList>
+          <perfRes codedval="solo">baritone soloist</perfRes>
+          <perfRes>chorus</perfRes>
+          <perfRes codedval="orch">orchestra</perfRes>
+        </perfResList></perfMedium>
+        <incip>
+          <tempo>Slow and flowing</tempo>
+          <meter count="4" unit="4"/>
+          <key pname="d" mode="minor">D minor</key>
+          <score>
+            <scoreDef meter.count="4" meter.unit="4" key.pname="d" key.mode="minor"/>
+            <section><measure n="1"><staff n="1"><layer n="1">
+              <note pname="d" oct="4" dur="4"/>
+              <note pname="f" oct="4" dur="8"/>
+              <note pname="a" oct="4" dur="8"/>
+              <note pname="d" oct="5" dur="4"/>
+              <note pname="c" oct="5" dur="4"/>
+            </layer></staff></measure></section>
+          </score>
+        </incip>
+        <history>
+          <p>Setting Walt Whitman's poem of the same name, Sea Drift is widely regarded as one of Delius's finest achievements, combining choral writing, a baritone soloist, and Delius's characteristic harmonic language to evoke a sea-bird's lament. Its German premiere preceded its English one by two years, reflecting Delius's stronger early reputation in Germany than in his native England.</p>
+          <eventList type="performances">
+            <event><date isodate="1906-05-24">1906-05-24</date><desc>World premiere, Essen, Germany, conducted by the composer.</desc></event>
+            <event><date isodate="1908-03-13">1908-03-13</date><desc>First English performance, Sheffield Festival.</desc></event>
+          </eventList>
+        </history>
+      </work>
+    </workList>
+  </meiHead>
+  <music><body><mdiv><score></score></mdiv></body></music>
+</mei>

@@ -1,0 +1,34 @@
+# systemd unit for the Music Works Catalogue Portal
+# Install to: /etc/systemd/system/musicworks.service
+#
+# Runs the FastAPI application under uvicorn, bound to localhost only.
+# nginx sits in front of it and handles public traffic (see nginx.conf),
+# so the application itself is never directly exposed to the internet.
+
+[Unit]
+Description=Music Works Catalogue Portal
+After=network.target
+
+[Service]
+Type=simple
+User=azureuser
+Group=azureuser
+WorkingDirectory=/opt/musicworks
+
+# Bind to loopback only: nginx proxies to this, nothing else can reach it.
+ExecStart=/opt/musicworks/venv/bin/uvicorn api.main:app --host 127.0.0.1 --port 8000
+
+Restart=always
+RestartSec=5
+
+# The single worker is deliberate: this VM has 1 GiB RAM and the workload
+# is read-only queries against a small SQLite file. More workers would
+# add memory pressure without improving throughput here.
+Environment="PYTHONUNBUFFERED=1"
+
+# Basic hardening
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

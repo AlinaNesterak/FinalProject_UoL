@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title type="main" xml:lang="en">Florida Suite</title>
+        <respStmt>
+          <persName role="composer" auth="VIAF" auth.uri="http://viaf.org/viaf/51874944">Frederick Delius</persName>
+          <persName role="composer" auth="Wikidata" auth.uri="https://www.wikidata.org/wiki/Q312698">Frederick Delius</persName>
+          <persName role="composer" auth="MusicBrainz" auth.uri="https://musicbrainz.org/artist/2a006dfe-a7af-46d1-b38f-8c1d90dd230d">Frederick Delius</persName>
+        </respStmt>
+      </titleStmt>
+      <pubStmt>
+        <identifier type="DCW">50</identifier>
+
+      </pubStmt>
+      <sourceDesc>
+        <source type="manuscript">
+          <titleStmt><title>Autograph score</title></titleStmt>
+          <physLoc><repository><corpName>Jacksonville University, Florida</corpName></repository>
+          <identifier type="shelfmark">DEL/1</identifier></physLoc>
+        </source>
+      </sourceDesc>
+    </fileDesc>
+    <workList>
+      <work>
+        <title type="main" xml:lang="en">Florida Suite</title>
+        <composer auth="VIAF" auth.uri="http://viaf.org/viaf/51874944">Frederick Delius</composer>
+        <creation><date isodate="1887">1887</date></creation>
+        <classification><termList><term type="genre">Orchestral</term></termList></classification>
+        <perfMedium><perfResList>
+          <perfRes codedval="orch">orchestra</perfRes>
+        </perfResList></perfMedium>
+        <incip>
+          <tempo>Daybreak: Gently moving</tempo>
+          <meter count="4" unit="4"/>
+          <key pname="e" mode="major">E major</key>
+          <score>
+            <scoreDef meter.count="4" meter.unit="4" key.pname="e" key.mode="major"/>
+            <section><measure n="1"><staff n="1"><layer n="1">
+              <note pname="e" oct="5" dur="4"/>
+              <note pname="g" oct="5" dur="8" accid="s"/>
+              <note pname="b" oct="5" dur="8"/>
+              <note pname="e" oct="6" dur="4"/>
+              <note pname="d" oct="6" dur="8" accid="s"/>
+            </layer></staff></measure></section>
+          </score>
+        </incip>
+        <history>
+          <p>Composed after Delius spent two years managing an orange plantation in Florida in his early twenties, this four-movement suite was his first mature orchestral work and already shows the influence of the African-American spirituals and plantation songs he heard during his time there. It went unpublished and largely unperformed publicly during his lifetime, receiving its full premiere only decades later.</p>
+          <eventList type="performances">
+            <event><date isodate="1888-04-26">1888-04-26</date><desc>First (private) performance, Leipzig, arranged by the composer for a group of friends.</desc></event>
+          </eventList>
+        </history>
+      </work>
+    </workList>
+  </meiHead>
+  <music><body><mdiv><score></score></mdiv></body></music>
+</mei>
