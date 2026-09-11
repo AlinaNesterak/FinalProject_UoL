@@ -36,7 +36,7 @@ Leave the existing SSH rule (port 22) in place or you will lock yourself out.
 ## Step 2 — Connect to the VM
 
 ```bash
-ssh azureuser@elearning-alinanesterak.switzerlandnorth.cloudapp.azure.com
+ssh azureuser@musicworks-alinanesterak.switzerlandnorth.cloudapp.azure.com
 ```
 
 Substitute your own username if it is not `azureuser`. The Azure portal shows it
@@ -46,8 +46,13 @@ under **Connect**.
 
 ```bash
 git clone https://github.com/AlinaNesterak/FinalProject_UoL.git /tmp/mw
-bash /tmp/mw/deploy/setup.sh
+bash /tmp/mw/final_work/deploy/setup.sh
 ```
+
+Note the `final_work/` path: in this repository the application lives in a
+subfolder rather than at the root. The script detects this automatically and
+configures the service accordingly, so it also works if the layout is
+flattened later.
 
 The script installs dependencies, clones the repository to `/opt/musicworks`,
 creates a virtual environment, builds the catalogue database from the MEI XML,
@@ -58,7 +63,7 @@ installs the systemd service, and configures nginx. It is safe to re-run.
 Open the DNS name in a browser:
 
 ```
-http://elearning-alinanesterak.switzerlandnorth.cloudapp.azure.com/
+http://musicworks-alinanesterak.switzerlandnorth.cloudapp.azure.com/
 ```
 
 You should see the catalogue with 24 works. The API documentation is at `/docs`
@@ -69,7 +74,7 @@ and the research findings page at `/#/research`.
 ## Updating after a code change
 
 ```bash
-cd /opt/musicworks
+cd /opt/musicworks/final_work
 git pull
 ./venv/bin/python transform/pipeline.py data catalogue.db   # only if data changed
 sudo systemctl restart musicworks
@@ -101,7 +106,7 @@ certificate can be obtained without owning a domain:
 
 ```bash
 sudo apt-get install -y certbot python3-certbot-nginx
-sudo certbot --nginx -d elearning-alinanesterak.switzerlandnorth.cloudapp.azure.com
+sudo certbot --nginx -d musicworks-alinanesterak.switzerlandnorth.cloudapp.azure.com
 ```
 
 Certbot edits the nginx config in place and sets up automatic renewal. Port 443
