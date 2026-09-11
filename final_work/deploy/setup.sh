@@ -29,7 +29,21 @@ else
   git clone "$REPO" "$APP_DIR"
 fi
 
-cd "$APP_DIR"
+# The application may sit at the repository root or inside a subfolder
+# (this repository keeps it in final_work/). Locate it rather than assume.
+if [ -f "$APP_DIR/api/main.py" ]; then
+  APP_ROOT="$APP_DIR"
+elif [ -f "$APP_DIR/final_work/api/main.py" ]; then
+  APP_ROOT="$APP_DIR/final_work"
+else
+  echo "ERROR: could not find api/main.py in $APP_DIR or $APP_DIR/final_work" >&2
+  echo "Contents of $APP_DIR:" >&2
+  ls -la "$APP_DIR" >&2
+  exit 1
+fi
+echo "    application root: $APP_ROOT"
+
+cd "$APP_ROOT"
 
 echo "==> Creating virtual environment and installing dependencies"
 python3 -m venv venv
@@ -43,7 +57,12 @@ echo "==> Building the catalogue database from MEI XML"
 
 echo "==> Installing systemd service"
 # Substitute the real service user into the unit file before installing.
-sed "s/^User=.*/User=$SERVICE_USER/; s/^Group=.*/Group=$SERVICE_USER/" \
+# Substitute the real service user and the detected application root, so
+# the unit works regardless of where in the repository the app lives.
+sed -e "s/^User=.*/User=$SERVICE_USER/" \
+    -e "s/^Group=.*/Group=$SERVICE_USER/" \
+    -e "s#^WorkingDirectory=.*#WorkingDirectory=$APP_ROOT#" \
+    -e "s#^ExecStart=.*#ExecStart=$APP_ROOT/venv/bin/uvicorn api.main:app --host 127.0.0.1 --port 8000#" \
     deploy/musicworks.service | sudo tee /etc/systemd/system/musicworks.service > /dev/null
 sudo systemctl daemon-reload
 sudo systemctl enable musicworks
