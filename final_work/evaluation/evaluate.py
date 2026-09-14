@@ -8,17 +8,26 @@ standard techniques rather than invented ones:
    parseable works had that field successfully extracted? (A standard
    data-pipeline coverage metric.)
 2. Parse robustness — what percentage of files parsed without fatal error?
-3. Discovery sanity check — does the engine rank a known-similar pair above a
-   known-dissimilar pair? (A minimal correctness check, honestly reported.)
+3. Data integrity — are any catalogue identifiers duplicated across files?
+   (A duplicate identifier would silently overwrite a record in the database,
+   since work_id is the primary key, so this is a correctness check rather
+   than a statistic.)
+4. Processing time — how long does the full parse take, in absolute terms and
+   per work? Reported to characterise how the pipeline is likely to behave at
+   full catalogue scale.
+5. Discovery sanity check — does the engine rank known-related works above
+   unrelated controls? (Reported honestly, including where it does not.)
 
-This script prints a report that is reproduced and discussed in the
-Preliminary Report. The evaluation is deliberately critical: it reports what
-does NOT work as well as what does.
+This script prints a report that is reproduced and discussed in the project
+report. The evaluation is deliberately critical: it reports what does NOT
+work as well as what does.
 """
 
 from __future__ import annotations
 
 import sys
+import time
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -45,7 +54,12 @@ FIELDS = {
 
 
 def evaluate():
+    # Time the full parse. Measured around parse_directory only, so the figure
+    # reflects parsing and not report formatting or I/O for printing.
+    _start = time.perf_counter()
     works, errors = parse_directory(DATA)
+    parse_seconds = time.perf_counter() - _start
+
     total_files = len(works) + len(errors)
 
     print("=" * 64)
@@ -61,6 +75,39 @@ def evaluate():
     print(f"   Robustness:         {robustness:.1f}% parsed")
     for fname, _ in errors:
         print(f"     - rejected: {fname} (correctly caught, not crashed)")
+
+    # --- 1b. Data integrity: duplicate catalogue identifiers ---
+    # work_id is the primary key in the database, so a duplicate identifier
+    # would silently overwrite an earlier record rather than raise an error.
+    # This is therefore a correctness check, not a descriptive statistic.
+    print("\n1b. DATA INTEGRITY — DUPLICATE IDENTIFIERS")
+    id_counts = Counter(w.work_id for w in works)
+    duplicates = {wid: n for wid, n in id_counts.items() if n > 1}
+    print(f"   Distinct work identifiers: {len(id_counts)} across {len(works)} works")
+    if duplicates:
+        print(f"   DUPLICATES FOUND: {len(duplicates)} — these would overwrite in the database")
+        for wid, n in sorted(duplicates.items()):
+            sources = [w.source_file for w in works if w.work_id == wid]
+            print(f"     - {wid} appears {n} times: {', '.join(sources)}")
+    else:
+        print("   No duplicate identifiers -> PASS")
+        print("   NOTE: the dataset is hand-curated at this scale, so a clean result")
+        print("         is expected rather than surprising. The check matters because")
+        print("         it would fail silently at full catalogue scale, where records")
+        print("         are ingested in bulk and not individually reviewed.")
+
+    # --- 1c. Processing time ---
+    print("\n1c. PROCESSING TIME")
+    per_work = (parse_seconds / len(works) * 1000) if works else 0
+    print(f"   Full parse of {total_files} files: {parse_seconds:.3f} s")
+    print(f"   Mean per work:                {per_work:.1f} ms")
+    # Extrapolate to the real catalogue to characterise expected behaviour.
+    projected = per_work * 750 / 1000
+    print(f"   Projected for ~750 works:     {projected:.1f} s (linear extrapolation)")
+    print("   NOTE: parsing is linear in file count with no cross-file work, so a")
+    print("         linear projection is reasonable. It assumes the full catalogue")
+    print("         resembles this sample in size and complexity per record, which")
+    print("         has not been verified and is the main caveat on this figure.")
 
     # --- 2. Transformation completeness per field ---
     print("\n2. TRANSFORMATION COMPLETENESS (per field, over parsed works)")

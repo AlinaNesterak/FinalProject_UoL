@@ -482,3 +482,26 @@ def test_works_without_verified_imslp_page_have_none(client):
     """
     d = client.get("/works/CNW 999").json()   # the minimal edge-case record
     assert d["imslp_url"] is None
+
+
+# ---------------- Data integrity ----------------
+
+def test_no_duplicate_work_identifiers():
+    """
+    work_id is the database primary key, so a duplicate identifier would
+    silently overwrite a record rather than raise an error. This asserts
+    the property the evaluation script reports on.
+    """
+    from collections import Counter
+    works, _ = parse_directory(DATA)
+    counts = Counter(w.work_id for w in works)
+    duplicates = {wid: n for wid, n in counts.items() if n > 1}
+    assert not duplicates, f"duplicate work identifiers would overwrite: {duplicates}"
+
+
+def test_every_work_has_a_usable_identifier():
+    """No work should fall back to the parser's UNKNOWN/? placeholder."""
+    works, _ = parse_directory(DATA)
+    for w in works:
+        assert w.catalogue != "UNKNOWN", f"{w.source_file} has no catalogue identifier"
+        assert w.catalogue_number != "?", f"{w.source_file} has no catalogue number"

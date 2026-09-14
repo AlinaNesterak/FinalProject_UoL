@@ -50,13 +50,15 @@ MEI XML files  ->  parser.py  ->  SQLite  ->  FastAPI REST API  ->  Web UI
   (interval, rhythm) bigram overlap. v1 (pitch-only) failed its own sanity
   check; v2 fixes it with a concrete, evidenced improvement — see
   `evaluation/evaluate.py`.
-- **Test suite** (`tests/`) — 78 tests: 50 backend (pytest) covering the
+- **Test suite** (`tests/`) — 80 tests: 52 backend (pytest) covering the
   parser, pipeline, and every API endpoint, plus 28 end-to-end (Playwright)
   covering the browser behaviour — search, filtering, notation rendering,
   the play button, the history page and its hash-based routing, and
   accessibility (keyboard focus, skip link, reduced-motion support).
 - **Evaluation** (`evaluation/evaluate.py`) — measures parse robustness,
-  transformation completeness, and discovery quality, with honest limitations.
+  data integrity (duplicate identifiers), processing time with a projection
+  to full catalogue scale, transformation completeness, and discovery
+  quality, with honest limitations throughout.
 
 ## Deployment
 
@@ -72,9 +74,9 @@ bash deploy/setup.sh
 ## Running the tests
 
 ```bash
-python3 -m pytest tests/test_prototype.py -v   # 50 backend tests
+python3 -m pytest tests/test_prototype.py -v   # 52 backend tests
 python3 -m pytest tests/test_frontend.py -v    # 28 end-to-end tests (Playwright)
-python3 -m pytest tests/ -v                    # all 78 together
+python3 -m pytest tests/ -v                    # all 80 together
 ```
 
 The end-to-end tests start a real server in a background thread and drive a
