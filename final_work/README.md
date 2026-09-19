@@ -62,6 +62,9 @@ MEI XML files  ->  parser.py  ->  SQLite  ->  FastAPI REST API  ->  Web UI
 
 ## Deployment
 
+A live instance runs at
+http://musicworks-alinanesterak.switzerlandnorth.cloudapp.azure.com/
+
 The `deploy/` folder contains everything needed to run this on a Linux server:
 a `systemd` unit, an `nginx` site configuration, and a `setup.sh` script that
 performs the whole installation. See `deploy/README.md` for step-by-step
@@ -86,10 +89,13 @@ dependency; the browser itself is a one-time separate download).
 
 ## Data
 
-`data/` contains real Carl Nielsen works (CNW 60, 102, 128, 131) and a Delius
-work (DCW 42), reconstructed in MEI 4.0 from the public MerMEId demo catalogue,
-plus two deliberate edge cases (a minimal record and a malformed file) for
-robustness testing.
+`data/` contains 24 real Carl Nielsen (CNW) and Frederick Delius (DCW) works,
+reconstructed in MEI 4.0 from the published catalogues — spanning symphonies,
+concertos, chamber music, opera, choral works and songs — plus one deliberate
+edge case (a malformed file) for robustness testing. The MerMEId export
+interface being unavailable, this is a sample rather than the full ~750-work
+Nielsen catalogue; see `evaluation/evaluate.py` for what that implies for the
+completeness figures.
 
 ## Running
 
@@ -105,8 +111,15 @@ uvicorn api.main:app --reload
 
 ## Known limitations (see evaluation output)
 
-- Tiny sample (6 works) — metrics are indicative only.
-- Incipit similarity is coarse on short melodies; the discovery sanity check
-  currently does **not** cleanly separate songs from the symphony, a documented
-  finding that motivates a richer metric in the next iteration.
-- No frontend yet (backend-focused prototype).
+- Sample size (24 works of ~750+ in the real Nielsen catalogue alone) —
+  completeness figures are indicative, not final.
+- Discovery v2 fixes the specific ordering failure found in v1 (two known
+  Holstein songs now correctly outrank an unrelated symphony), but a second,
+  independent known-pair check ties rather than clearly separating the pair —
+  the fix generalises to the rhythmic pattern it targeted, not yet to every
+  related pair at this incipit length.
+- No user study has been conducted; accessibility is WCAG-aligned and
+  verified by automated tests, which is a proxy for usability, not evidence
+  of it. A study design is documented but not yet run.
+- The Docker deployment path is untested; the live deployment uses systemd
+  and nginx directly (see `deploy/`).
